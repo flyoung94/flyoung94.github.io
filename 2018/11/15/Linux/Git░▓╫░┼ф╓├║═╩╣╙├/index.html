@@ -96,20 +96,20 @@
 
 
 
-<meta name="description" content="密钥公钥与私钥： 1.公钥加密，私钥解密2.私钥数字签名，公钥验证 SSH密码登陆原理（公钥加密）用户登陆远程机： 1.远程主机收到用户的登录请求，把自己的公钥发给用户2.用户使用这个公钥，将登陆密码加密后，发给远程机3.远程机用自己的私钥，解密登陆密码，确定正确，同意用户登陆 解决存在风险： 中间人攻击 截获用户登陆请求，冒充远程机，伪造公钥发给用户，获取远程机密码1.known_hosts文件">
+<meta name="description" content="密钥公钥与私钥： 1.公钥加密，私钥解密2.私钥数字签名，公钥验证 SSH密码登陆原理（公钥加密）用户登陆远程机： 1.远程主机收到用户的登录请求，把自己的公钥发给用户2.用户使用这个公钥，将登陆密码加密后，发给远程机3.远程机用自己的私钥，解密登陆密码，确定正确，同意用户登陆">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git安装配置和使用">
 <meta property="og:url" content="http://yoursite.com/2018/11/15/Linux/Git░▓╫░┼ф╓├║═╩╣╙├/index.html">
 <meta property="og:site_name" content="linxubin&#39;s blog">
-<meta property="og:description" content="密钥公钥与私钥： 1.公钥加密，私钥解密2.私钥数字签名，公钥验证 SSH密码登陆原理（公钥加密）用户登陆远程机： 1.远程主机收到用户的登录请求，把自己的公钥发给用户2.用户使用这个公钥，将登陆密码加密后，发给远程机3.远程机用自己的私钥，解密登陆密码，确定正确，同意用户登陆 解决存在风险： 中间人攻击 截获用户登陆请求，冒充远程机，伪造公钥发给用户，获取远程机密码1.known_hosts文件">
+<meta property="og:description" content="密钥公钥与私钥： 1.公钥加密，私钥解密2.私钥数字签名，公钥验证 SSH密码登陆原理（公钥加密）用户登陆远程机： 1.远程主机收到用户的登录请求，把自己的公钥发给用户2.用户使用这个公钥，将登陆密码加密后，发给远程机3.远程机用自己的私钥，解密登陆密码，确定正确，同意用户登陆">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wx4.sinaimg.cn/large/007fPWmPly1fy41o2n2plj30d3097wfo.jpg">
 <meta property="og:image" content="http://wx1.sinaimg.cn/large/007fPWmPly1fy41o2x097j30j608babp.jpg">
-<meta property="og:updated_time" content="2018-12-18T03:55:23.184Z">
+<meta property="og:updated_time" content="2018-12-18T13:01:15.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git安装配置和使用">
-<meta name="twitter:description" content="密钥公钥与私钥： 1.公钥加密，私钥解密2.私钥数字签名，公钥验证 SSH密码登陆原理（公钥加密）用户登陆远程机： 1.远程主机收到用户的登录请求，把自己的公钥发给用户2.用户使用这个公钥，将登陆密码加密后，发给远程机3.远程机用自己的私钥，解密登陆密码，确定正确，同意用户登陆 解决存在风险： 中间人攻击 截获用户登陆请求，冒充远程机，伪造公钥发给用户，获取远程机密码1.known_hosts文件">
+<meta name="twitter:description" content="密钥公钥与私钥： 1.公钥加密，私钥解密2.私钥数字签名，公钥验证 SSH密码登陆原理（公钥加密）用户登陆远程机： 1.远程主机收到用户的登录请求，把自己的公钥发给用户2.用户使用这个公钥，将登陆密码加密后，发给远程机3.远程机用自己的私钥，解密登陆密码，确定正确，同意用户登陆">
 <meta name="twitter:image" content="http://wx4.sinaimg.cn/large/007fPWmPly1fy41o2n2plj30d3097wfo.jpg">
 
 
@@ -403,6 +403,7 @@
 <p>1.公钥加密，私钥解密<br>2.私钥数字签名，公钥验证</p>
 <h2 id="SSH密码登陆原理（公钥加密）"><a href="#SSH密码登陆原理（公钥加密）" class="headerlink" title="SSH密码登陆原理（公钥加密）"></a>SSH密码登陆原理（公钥加密）</h2><p><strong>用户登陆远程机：</strong></p>
 <p>1.远程主机收到用户的登录请求，把自己的公钥发给用户<br>2.用户使用这个公钥，将登陆密码加密后，发给远程机<br>3.远程机用自己的私钥，解密登陆密码，确定正确，同意用户登陆</p>
+<a id="more"></a>
 <p><strong>解决存在风险： 中间人攻击</strong></p>
 <p>截获用户登陆请求，冒充远程机，伪造公钥发给用户，获取远程机密码<br>1.known_hosts文件 （区别于authorized_keys文件）<br>当用户接收远程主机的公钥后，它就会被保存在文件<code>~/.ssh/known_hosts</code>之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，可以辨别中间人的伪造公钥。<br>2.口令登陆<br>第一次登陆远程机，用户没有其公钥，为防止中间人攻击，系统会出现下面提示：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ ssh user@host</span><br><span class="line"></span><br><span class="line">　　The authenticity of host <span class="string">'host (12.18.429.21)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">　　RSA key fingerprint is 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">　　Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure></p>
 <p>提示：无法确认host主机的真实性，只知道它的公钥指纹，是否继续登陆？<br>上面　<code>98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d</code> 就是远程机的公钥指纹，为了安全登陆，可以确认远程机的公钥指纹，一般远程机会贴在自己的网站上，以便用户自行核对。</p>
@@ -559,7 +560,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -570,7 +571,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -581,7 +582,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

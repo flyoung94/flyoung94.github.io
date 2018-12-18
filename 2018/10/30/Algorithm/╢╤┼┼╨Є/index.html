@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/10/30/Algorithm/╢╤┼┼╨Є/image/heap2.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/10/30/Algorithm/╢╤┼┼╨Є/image/heap3.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/10/30/Algorithm/╢╤┼┼╨Є/image/heap4.jpg">
-<meta property="og:updated_time" content="2018-12-18T03:55:23.196Z">
+<meta property="og:updated_time" content="2018-12-18T13:06:45.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="堆排序">
 <meta name="twitter:description" content="堆排序 参考书籍： 《算法导论》  堆排序特点 原址排序 不稳定排序 T(n)=nlgn  堆排序缺点 最大的也是唯一的缺点就是——堆的维护问题，实际场景中的数据是频繁发生变动的，而对于待排序序列的每次更新（增，删，改），我们都要重新做一遍堆的维护，以保证其特性，这在大多数情况下都是没有必要的 每次移出堆顶最大元素后，都需要从顶部维护最大堆性质导致了过多的数据交换操作。 插入一个元素后（加到堆最后">
@@ -414,6 +414,7 @@
 <li>每次移出堆顶最大元素后，都需要从顶部维护最大堆性质导致了过多的数据交换操作。</li>
 <li>插入一个元素后（加到堆最后），又要重新进行整个堆算法。<h4 id="堆排序的总过程："><a href="#堆排序的总过程：" class="headerlink" title="堆排序的总过程："></a>堆排序的总过程：</h4>一.确定父结点，左右孩子；<br>二.维护最大堆 O(n)=lgn;<br>三.建立最大堆<br>四.堆排算法 T(n)=nlgn</li>
 </ol>
+<a id="more"></a>
 <hr>
 <h4 id="1-完全二叉树-数组"><a href="#1-完全二叉树-数组" class="headerlink" title="1. 完全二叉树  数组"></a>1. 完全二叉树 <--> 数组</--></h4><p><img src="./image/heap1.jpg" alt=""></p>
 <h4 id="2-确定父结点，左孩子，右孩子"><a href="#2-确定父结点，左孩子，右孩子" class="headerlink" title="2.确定父结点，左孩子，右孩子"></a>2.确定父结点，左孩子，右孩子</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Parent(i) ((i-1)/2)    <span class="comment">//父结点</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Left(i)   (i*2+1)      <span class="comment">//左孩子</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Right(i)  (i*2+2)      <span class="comment">//右孩子</span></span></span><br></pre></td></tr></table></figure>
@@ -465,8 +466,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/30/Algorithm/┼┼╨Є/" rel="next" title="排序">
-                <i class="fa fa-chevron-left"></i> 排序
+              <a href="/2018/10/29/Linux/Markdown▒╩╝╟/" rel="next" title="Markdown笔记">
+                <i class="fa fa-chevron-left"></i> Markdown笔记
               </a>
             
           </div>
@@ -556,7 +557,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -567,7 +568,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -578,7 +579,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

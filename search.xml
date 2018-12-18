@@ -12,17 +12,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[二叉搜索树]]></title>
-    <url>%2F2018%2F11%2F23%2FAlgorithm%2F%E2%95%A2%E2%96%A0%E2%96%93%D1%86%E2%95%A6%E2%95%A4%E2%95%A6%D1%9E%E2%95%A9%D1%9E%2F</url>
-    <content type="text"><![CDATA[二叉搜索树 参考资料: 《算法导论》Reference URL: https://www.cnblogs.com/skywang12345/p/3576328.html]]></content>
-      <categories>
-        <category>Algorithm</category>
-      </categories>
-      <tags>
-        <tag>Algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[散列表]]></title>
     <url>%2F2018%2F11%2F19%2FAlgorithm%2F%E2%95%94%D0%B2%E2%94%B4%E2%95%A8%E2%96%92%D1%8D%2F</url>
     <content type="text"><![CDATA[散列表 参考 《算法导论》 散列表(hash table)是从一个集合A到另一个集合B的映射(mapping)。 区别与直接寻址表（数组表）：如果全域U很大，则要开辟的内存空间就要很大。但实际集合K相对U来说可能很小，所以开辟的空间就会浪费。 散列表冲突解决 链接法 开放寻址法 字符串hash 1. 链接法 将所有关键字为同义词的结点链接在同一个链表中。若选定的散列表长度为m，则可将散列表定义为一个由m个头指针组成的指针数组T[0..m-1]。凡是散列地址为i的结点，均插入到以T[i]为头指针的单链表中。T中各分量的初值均应为空指针。在拉链法中，装填因子α可以大于1，但一般均取。 2. 开放寻址法 冲突元素探测时从i=0开始，首先探查T[h’(k)]，然后依次探测T[h’(k)+1]，…，直到T[h’(k)+m-1]，此后又循环到T[0]，T[1]，…，直到探测到T[h’(k)-1]为止。装载因子α≤1。 探查： 线性探查 二次探查 双重探查 缺点： 删除元素比较困难 散列函数（映射） 除法散列 乘法散列 全域散列 散列表应用 保存密码计算机的登陆密码，一般是一串字符。然而，为了安全起见，计算机不会直接保存该字符串，而是保存该字符串的hash值(使用MD5、SHA或者其他算法作为hash函数)。当用户下次登陆的时候，输入密码字符串。如果该密码字符串的hash值与保存的hash值一致，那么就认为用户输入了正确的密码。这样，就算黑客闯入了数据库中的密码记录，他能看到的也只是密码的hash值。上面所使用的hash函数有很好的单向性：很难从hash值去推测键值。 git内容变化git中，文件内容为键值，并用SHA算法作为hash function，将文件内容对应为固定长度的字符串(hash值)。如果文件内容发生变化，那么所对应的字符串就会发生变化。git通过比较较短的hash值，就可以知道文件内容是否发生变动。]]></content>
@@ -47,7 +36,7 @@
   <entry>
     <title><![CDATA[Httpd文件服务器]]></title>
     <url>%2F2018%2F11%2F09%2FLinux%2FHttpd%E2%95%AC%E2%94%80%E2%95%9D%E2%96%A0%E2%95%96%E2%96%A0%E2%95%AC%D1%91%E2%95%9E%D1%9E%2F</url>
-    <content type="text"><![CDATA[文件服务器搭建方法 Httpd(appache2) vsftpd python SimpleHTTPserver 搭建Httpd文件服务器1.安装 Centos: yum install httpdUbuntu: apt-get install apache2 2.配置 centos为例 查看httpd版本：httpd -v查看httpd配置文件路径： httpd -V配置文件默认目录: /ect/httpd/conf/httpd.conf修改配置文件：1.端口号 Listen 80`可以改为Listen 8000 或任意符合要求的端口 2.文件存放目录 DocumentRoot &quot;/home/xblin&quot; tips： 目录文件一定要有读的权限，最好放在/home下，否则会出现you don’t have permission. &lt;Directory &quot;/home/xblin&quot;&gt; #这个同上也要改 启动Httpd服务： 123service httpd stopservice httpd startservice httpd restart 3.Web查看网页登陆链接 http://机器ip：端口eg： http://10.32.115.38:8000第一次登陆会弹出欢迎界面注释 /ect/httpd/conf.d/welcome.conf再次登陆就能看到文件列表 4.文件下载wget http://机器ip：端口/文件名eg： wget http://10.32.115.38:8000/aa.txt 扩展进阶 设置密码登陆 前端界面设计]]></content>
+    <content type="text"><![CDATA[文件服务器搭建方法 Httpd(appache2) vsftpd python SimpleHTTPserver 搭建Httpd文件服务器1.安装 Centos: yum install httpdUbuntu: apt-get install apache2 2.配置 centos为例 查看httpd版本：httpd -v查看httpd配置文件路径： httpd -V配置文件默认目录: /ect/httpd/conf/httpd.conf修改配置文件： 1.端口号 Listen 80`可以改为Listen 8000 或任意符合要求的端口 2.文件存放目录 DocumentRoot &quot;/home/xblin&quot; tips： 目录文件一定要有读的权限，最好放在/home下，否则会出现you don’t have permission. &lt;Directory &quot;/home/xblin&quot;&gt; #这个同上也要改 启动Httpd服务： 123service httpd stopservice httpd startservice httpd restart 3.Web查看网页登陆链接 http://机器ip：端口eg： http://10.32.115.38:8000第一次登陆会弹出欢迎界面注释 /ect/httpd/conf.d/welcome.conf再次登陆就能看到文件列表 4.文件下载wget http://机器ip：端口/文件名eg： wget http://10.32.115.38:8000/aa.txt 扩展进阶 设置密码登陆 前端界面设计]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -89,46 +78,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[排序]]></title>
-    <url>%2F2018%2F10%2F30%2FAlgorithm%2F%E2%94%BC%E2%94%BC%E2%95%A8%D0%84%2F</url>
-    <content type="text"><![CDATA[稳定性排序和非稳定性排序稳定性排序：能保证排序后2个相等的数前后位置顺序不变。eg：插入排序、冒泡排序、归并排序。 非稳定排序： 相反。 原址排序 插排，堆排，快排非： 归并排序 一、归并排序1.时间复杂度O(n) = nlgn 2.代码实现 最大子数组问题二、堆排序1.确定父结点，左孩子，右孩子2.维护最大堆]]></content>
-      <categories>
-        <category>Algorithm</category>
-      </categories>
-      <tags>
-        <tag>Algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[刷题笔记]]></title>
-    <url>%2F2018%2F10%2F29%2FPractice%2F%E2%95%A6%D0%B2%E2%95%A0%D1%82%E2%96%92%E2%95%A9%E2%95%9D%E2%95%9F%2F</url>
-    <content type="text"><![CDATA[1. 等差数列的求和公式= （首相 + 末项） * 项数 ／ 2；]]></content>
-      <categories>
-        <category>Practice</category>
-      </categories>
-      <tags>
-        <tag>Practice</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[欧拉计划第三题]]></title>
-    <url>%2F2018%2F10%2F29%2FPractice%2F%E2%94%BC%E2%95%96%E2%94%94%D0%BD%E2%95%9D%E2%95%9E%E2%95%97%D0%BE%E2%95%A1%E2%94%8C%E2%95%9A%C2%A4%E2%95%A0%D1%82%2F</url>
-    <content type="text"><![CDATA[The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143 ? 13195的主要素因子是5,7,13和29。 600851475143的最大素因子是什么？ 答案：6857思路我们可以知道任意的合数可以由两个数相乘得来，如c = a * b，假设a&lt;= b，则 a&lt;=根号c，b&gt;=根号c。 注意： 1.所求数字太大，用宏定义使代码不冗余 2.当num不为1时，表明它的最大素因子是它本身 12345678910111213141516171819#include &lt;stdio.h&gt;#include &lt;inttypes.h&gt;#define NUM 600851475143int main()&#123; int64_t num = NUM; int64_t prime_max; for(int64_t i = 2; i * i &lt;= NUM; i++)&#123; while(num % i == 0)&#123; num /= i; prime_max = i; &#125; &#125; if(num != 1) prime_max = num; printf("%"PRId64"\n", prime_max); return 0;&#125;]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[欧拉计划第二题]]></title>
-    <url>%2F2018%2F10%2F29%2FPractice%2F%E2%94%BC%E2%95%96%E2%94%94%D0%BD%E2%95%9D%E2%95%9E%E2%95%97%D0%BE%E2%95%A1%E2%94%8C%E2%95%A2%E2%96%A0%E2%95%A0%D1%82%2F</url>
-    <content type="text"><![CDATA[Each new term in the Fibonacci sequence is generated by adding the previous two terms. By starting with 1 and 2, the first 10 terms will be: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, … By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms. Fibonacci序列中的每个新术语都是通过添加前两个术语生成的。从1和2开始，前10个术语将是： 1,2,3,5,8,13,21,34,55,89 …… 通过考虑Fibonacci序列中的值不超过四百万的项，找到偶数项的总和。 答案：46137321.暴力求解法—开辟数组法从题中我们可以想到一种方法就是开数组，将得到的Fibonacci数放到数组中，一步一步循环相加 （1）用f[0]做计数器，记录有多少个Fibonacci数； （2）用f[f[0]] = f[f[0] - 1] + f[f[0] - 2]计算Fibonacci数 1234567891011121314151617181920#include &lt;stdio.h&gt;int main()&#123; int f[500] = &#123;0&#125;; f[0] = 2; f[1] = 1; f[2] = 2; while (f[f[0]] &lt; 4000000) &#123; f[0]++; f[f[0]] = f[f[0] - 1] + f[f[0] - 2]; &#125; int sum = 0; for(int i = 1; i &lt;= f[0]; i++)&#123; if(f[i] % 2 == 0) sum += f[i]; &#125; printf("%d\n", sum); return 0;&#125; 2.优化开辟数组法其实我们并不需要开辟那么大的数组记录全部的Fbionacci数，只需要开辟一个大小为3的数组即可，大大减小了空间 通过考虑Fibonacci序列中的值不超过四百万的项，找到偶数项的总和。 1234567891011121314151617#include &lt;stdio.h&gt;int main()&#123; int f[3] = &#123;0&#125;; f[0] = 1; f[1] = 2; int sum = 0; for(int i = 2; f[2] &lt; 4000000; i++)&#123; f[i % 3] = f[(i - 1) % 3] + f[(i - 2) % 3]; if(f[i % 3] % 2 == 0)&#123; sum += f[i % 3]; &#125; &#125; printf("%d\n", sum + 2); return 0;&#125; 3.最优版plus由于我们只需要不断更新一个Fibonacci数，就可以进行求和运算，所以我们并不需要开辟数组，只需要不断更新b的值就可以了。 通过考虑Fibonacci序列中的值不超过四百万的项，找到偶数项的总和。 123456789101112131415#include &lt;stdio.h&gt;int main()&#123; int a = 1, b = 1, c; int sum = 0; while(b &lt; 4000000)&#123; if(b % 2 == 0) sum += b; c = b; b = b + a; a = c; &#125; printf("%d\n", sum); return 0;&#125;]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[欧拉计划第一题]]></title>
-    <url>%2F2018%2F10%2F29%2FPractice%2F%E2%94%BC%E2%95%96%E2%94%94%D0%BD%E2%95%9D%E2%95%9E%E2%95%97%D0%BE%E2%95%A1%E2%94%8C%E2%95%A5%E2%95%97%E2%95%A0%D1%82%2F</url>
-    <content type="text"><![CDATA[If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000. 如果我们列出所有低于10的自然数是3或5的倍数，我们得到3,5,6和9，这些倍数的总和为23。 找到1000以下所有3或5的倍数的总和。 答案为2331681.暴力求解法从1遍历到1000，将能被3和5整除的数相加到sum中，注意存在既能整除3又能整除5的数，所以用或运算 12345678910111213#include &lt;stdio.h&gt;int main()&#123; int sum = 0; for(int i = 1; i &lt; 1000; i++)&#123; if((i % 3 == 0) || (i % 5 == 0))&#123; sum += i; &#125; &#125; printf("%d\n", sum); return 0;&#125; 2.技巧求解法由于我们初中的时候求过等差数列的求和运算，所以在这里，我们并不需要花费那么多时间去遍历，于是我们巧用公式等差数列的求和公式= （首相 + 末项） * 项数 ／ 2； 注意：在这里能被3和5同时整除的数加了两次，所以我们需要把重复加的数字通过公式减下去 1234567891011#include &lt;stdio.h&gt;int main()&#123; int sum3, sum5, sum15; sum3 = (3 + 999) * (999 / 3) / 2; sum5 = (5 + 995) * (995 / 5) / 2; sum15 = (15 + 990) * (990 / 15) / 2; printf("%d\n", sum3 + sum5 - sum15); return 0;&#125;]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[Markdown笔记]]></title>
     <url>%2F2018%2F10%2F29%2FLinux%2FMarkdown%E2%96%92%E2%95%A9%E2%95%9D%E2%95%9F%2F</url>
-    <content type="text"><![CDATA[Written by xblin 标题123456# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题 注：# 和「一级标题」之间建议保留一个字符的空格，这是最标准的 Markdown 写法 代码注释1.单行注释code 2.多行注释1234#include &lt;iostream&gt;int main(void)&#123; count &lt;&lt;"hello world!"&lt;&lt;endl;&#125; 列表1.无序列表123- 文本1- 文本2- 文本3 output： 文本1 文本2 文本3 2.有序列表1231. 文本12. 文本23. 文本3 表格12345标题1 | 标题2 | 标题3 |----- | :---- | ----: |lab1 | lab2 | lab3 |注： :---- 为左对齐 ， ----:为右对齐 output: 标题1 标题2 标题3 lab1 lab2 lab3 下划线1---- output: 空格和换行####空格1.按shift + space 切换为全角模式，输入空格就有效2.1&amp;bsp; aa 换行12&lt;br/&gt;下行文本 output:aa]]></content>
+    <content type="text"><![CDATA[标题123456# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题 注：# 和「一级标题」之间建议保留一个字符的空格，这是最标准的 Markdown 写法 代码注释1.单行注释code 2.多行注释1234#include &lt;iostream&gt;int main(void)&#123; count &lt;&lt;"hello world!"&lt;&lt;endl;&#125; 列表1.无序列表123- 文本1- 文本2- 文本3 output： 文本1 文本2 文本3 2.有序列表1231. 文本12. 文本23. 文本3 表格12345标题1 | 标题2 | 标题3 |----- | :---- | ----: |lab1 | lab2 | lab3 |注： :---- 为左对齐 ， ----:为右对齐 output: 标题1 标题2 标题3 lab1 lab2 lab3 下划线1---- output: 空格和换行####空格1.按shift + space 切换为全角模式，输入空格就有效2.1&amp;bsp; aa 换行12&lt;br/&gt;下行文本 output:aa]]></content>
       <categories>
         <category>Linux</category>
       </categories>
