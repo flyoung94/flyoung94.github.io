@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Kubernetes]]></title>
+    <url>%2F2018%2F12%2F10%2FLinux%2FKubernetes%2F</url>
+    <content type="text"><![CDATA[Kubernetes下载kubernetes client或kubernetes serverurl：https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.11.md#server-binaries 用途： 容器的编排 K8s集群架构 Master NodeMaster 提供集群的管理控制中心，调度，控制集群的资源，包含： API Server： 任何的资源请求/调用操作都是通过 Kube-apiserver 提供的接口进行 Controller： 运行管理控制器，它们是集群中处理常规任务的后台线程。 Schedule：调度Node的Pod，为Pod选择一个Node。优先级队列的选择 Node： 运行容器，运行服务的节点Kubelet：是主要的节点代理，它会监视已分配给节点的pod，具体功能： 安装Pod所需的volume。 下载Pod的Secrets。 Pod中运行的 docker（或experimentally，rkt）容器。 定期执行容器健康检查。等等… 部署Deployment和 副本集Replicaset Deployment部署应用：让应用程序在集群上运行： 包含Replica Set 包含版本信息用于升级/回滚 Replicaset副本集，创建Pod的多个副本集，可扩容/缩容，实现负载均衡。 Service服务Service： 提供外界访问的接口，关联一组Pod， 可以用kubectl get services 命令查看应用被映射到节点的哪个端口，eg 8080:30253 Service是Pods的逻辑抽象，体现对一个虚拟IP和端口，可供外部访问 Service的几种类型 ClusterIP：会创建k8s cluster内可以访问的cluster ip，集群内调用者可通过该IP访问该服务 NodePort：可以通过该cluster的任意一个node的外部IP来访问，NodePort的端口范围为30000-32767 LoadBalancer：会调用iaas的服务创建load balancer的VIP，集群外调用者可通过此外IP访问 Namespace在一个名字空间内，资源的名字必须保证unique，但是不同名字空间内，可以相同 创建namespacekubectl create namespace [名字] 删除namespce kubectl delete namespaces [名字] Tips: 删除namespcace后，改namespace对应的所有集群资源都删除了。 Label一对 key/value， 被关联到对象上例如pod（一个对象可以有多个label）service 是通过label关联Deployment的 （在yaml file里） Kubectl常用命令1234567891011$ kubectl version$ kubectl help$ kubectl cluster-info$ kubectl create namespace [名字]$ kubectl get nodes --namespace=[名字]$ kubectl get pods$ kubectl get deployments$ kubectl get services$ kubectl delete namespaces [名字]$ kubectl describe xxx #查看pod或node细节$ kubectl logs xxx #查看日志文件 kubectl demo123456$ kubectl create namespace [名字] #创建namespace$ kubectl run kubernetes-bootcamp --image=hub.baidubce.com/xxx/mynode:1.0.0 --port=8080 --namespace=[名字] #配置pod并运行$ kubectl get pods --namespace=xxx #查看运行的pod$ kubectl describe pods/[pod name] --namespace=xxx #查看pod详细配置$ $kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080 --namespace=[名字] #service的配置$curl $VM_IP:$NODE_PORT #运行pod中的程序 k8s 扩容/缩容， 版本更新， 小流量， A/B测试 demo 参考ppt 使用yaml file运行yaml文件： kubectl create -f xxx.yaml namespace yaml文件：1234apiVersion: v1kind: Namespacemetadata: name: linxubin Deployment yaml文件:1234567891011121314151617181920apiVersion: extensions/v1beta1kind: Deploymentmetadata: name: kubernetes-bootcamp namespace: linxubinspec: replicas: 3 template: metadata: labels: app: linode track: stable version: 1.0.0 spec: containers: - name: linxubin image: "hub.baidubce.com/bootcamp_6/linode:1.0.0" ports: - name: http containerPort: 8080 Service的yaml文件：12345678910111213apiVersion: v1kind: Servicemetadata: name: linxubin labels: app: linodespec: ports: - port: 8080 targetPort: 8080 type: NodePort selector: app: linode #对应Deployment的label]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>K8s</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[二叉搜索树]]></title>
+    <url>%2F2018%2F11%2F23%2FAlgorithm%2F%E2%95%A2%E2%96%A0%E2%96%93%D1%86%E2%95%A6%E2%95%A4%E2%95%A6%D1%9E%E2%95%A9%D1%9E%2F</url>
+    <content type="text"><![CDATA[二叉搜索树 参考资料: 《算法导论》Reference URL: https://www.cnblogs.com/skywang12345/p/3576328.html]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[散列表]]></title>
+    <url>%2F2018%2F11%2F19%2FAlgorithm%2F%E2%95%94%D0%B2%E2%94%B4%E2%95%A8%E2%96%92%D1%8D%2F</url>
+    <content type="text"><![CDATA[散列表 参考 《算法导论》 散列表(hash table)是从一个集合A到另一个集合B的映射(mapping)。 区别与直接寻址表（数组表）：如果全域U很大，则要开辟的内存空间就要很大。但实际集合K相对U来说可能很小，所以开辟的空间就会浪费。 散列表冲突解决 链接法 开放寻址法 字符串hash 1. 链接法 将所有关键字为同义词的结点链接在同一个链表中。若选定的散列表长度为m，则可将散列表定义为一个由m个头指针组成的指针数组T[0..m-1]。凡是散列地址为i的结点，均插入到以T[i]为头指针的单链表中。T中各分量的初值均应为空指针。在拉链法中，装填因子α可以大于1，但一般均取。 2. 开放寻址法 冲突元素探测时从i=0开始，首先探查T[h’(k)]，然后依次探测T[h’(k)+1]，…，直到T[h’(k)+m-1]，此后又循环到T[0]，T[1]，…，直到探测到T[h’(k)-1]为止。装载因子α≤1。 探查： 线性探查 二次探查 双重探查 缺点： 删除元素比较困难 散列函数（映射） 除法散列 乘法散列 全域散列 散列表应用 保存密码计算机的登陆密码，一般是一串字符。然而，为了安全起见，计算机不会直接保存该字符串，而是保存该字符串的hash值(使用MD5、SHA或者其他算法作为hash函数)。当用户下次登陆的时候，输入密码字符串。如果该密码字符串的hash值与保存的hash值一致，那么就认为用户输入了正确的密码。这样，就算黑客闯入了数据库中的密码记录，他能看到的也只是密码的hash值。上面所使用的hash函数有很好的单向性：很难从hash值去推测键值。 git内容变化git中，文件内容为键值，并用SHA算法作为hash function，将文件内容对应为固定长度的字符串(hash值)。如果文件内容发生变化，那么所对应的字符串就会发生变化。git通过比较较短的hash值，就可以知道文件内容是否发生变动。]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Git安装配置和使用]]></title>
+    <url>%2F2018%2F11%2F15%2FLinux%2FGit%E2%96%91%E2%96%93%E2%95%AB%E2%96%91%E2%94%BC%D1%84%E2%95%93%E2%94%9C%E2%95%91%E2%95%90%E2%95%A9%E2%95%A3%E2%95%99%E2%94%9C%2F</url>
+    <content type="text"><![CDATA[密钥公钥与私钥： 1.公钥加密，私钥解密2.私钥数字签名，公钥验证 SSH密码登陆原理（公钥加密）用户登陆远程机： 1.远程主机收到用户的登录请求，把自己的公钥发给用户2.用户使用这个公钥，将登陆密码加密后，发给远程机3.远程机用自己的私钥，解密登陆密码，确定正确，同意用户登陆 解决存在风险： 中间人攻击 截获用户登陆请求，冒充远程机，伪造公钥发给用户，获取远程机密码1.known_hosts文件 （区别于authorized_keys文件）当用户接收远程主机的公钥后，它就会被保存在文件~/.ssh/known_hosts之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，可以辨别中间人的伪造公钥。2.口令登陆第一次登陆远程机，用户没有其公钥，为防止中间人攻击，系统会出现下面提示：1234567$ ssh user@host The authenticity of host 'host (12.18.429.21)' can't be established. RSA key fingerprint is 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d. Are you sure you want to continue connecting (yes/no)? 提示：无法确认host主机的真实性，只知道它的公钥指纹，是否继续登陆？上面 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d 就是远程机的公钥指纹，为了安全登陆，可以确认远程机的公钥指纹，一般远程机会贴在自己的网站上，以便用户自行核对。 SSH免密登陆原理(RSA加密技术)Step1：SSH密钥配置1.在A上生成密钥对2.将A的公钥拷贝到B上3.在B上将A的公钥写入到授权列表文件authorized_keys中 Step2: SSH免密登陆原理（git登陆原理，B相当于git服务器）1.A请求登陆B2.B查看授权列表3.B把A的公钥加密一随机字符串发给A4.A用私钥解密B发送过来的字符串5.A用私钥加密结果发送给B（数字签名）6.B用A的公钥验证A发过来的解密字符串7.验证通过登陆成功 SSH生成迷密钥对ssh-keygen -t rsa -f ~/.ssh/id_rsa.${name} -P &quot;&quot; -q -t参数：加密方式rsa-f参数：文件名及保存路径 eg： id_rsa.xblin id_rsa.xblin.pub-P参数：提取密钥的密码，默认为无 配置config文件~/.ssh/configSSH默认读取id_rsa这个私钥修改配置指定路径和名字： 1.Host #主机地址2.User #认证用户3.IdentifyFile #认证私钥路径 Tips : Host * 匹配所有的主机 eg： 123Host icode.baidu.comUser linxubinIdentityFile ~/.ssh/id_rsa.linxubin Important: config文件权限必须是644 Shell脚本代码实现12345678910111213141516171819202122232425#!/bin/bashusage()&#123; echo &#125;ssh_config()&#123; name=$1 Remote_Host=$2 yum install -y expect if [[ ! -f ~/.ssh/id_rsa.$&#123;name&#125;.pub ]]; then ssh-keygen -t rsa -f ~/.ssh/id_rsa.$1 -P "" -q #no passphrase echo "Host *" &gt;&gt; ~/.ssh/config echo "User $&#123;name&#125;" &gt;&gt; ~/.ssh/config echo "IdentityFile ~/.ssh/id_rsa.$&#123;name&#125;" &gt;&gt; ~/.ssh/config chmod 644 ~/.ssh/config # chmod must 644 fi ssh root@$&#123;Remote_Host&#125; "cat &gt;&gt; /root/.ssh/authorized_keys" &lt; /root/.ssh/id_rsa.$&#123;name&#125;.pub&#125;ssh_config $1 $2 Github ssh配置一. git clone命令本地主机clone远程github仓库不需要建立信任关系 二. ssh建立信任关系1.生成密钥对： ssh-keygen -t rsa2.gitconfig配置 12$ git config --global user.name &quot;xxx&quot; ##github用户名$ git config --global user.email xxx@example.com ##github注册邮箱 /etc/gitconfig 文件：系统中对所有用户都普遍适用的配置。若使用 git config 时用 –system 选项，读写的就是这个文件 ~/.gitconfig 文件：用户目录下的配置文件只适用于该用户。若使用 git config 时用 –global 选项，读写的就是这个文件。 当前项目的 Git 目录中的配置文件（也就是工作目录中的 .git/config 文件）：这里的配置仅仅针对当前项目有效。每一个级别的配置都会覆盖上层的相同配置，所以 .git/config 里的配置会覆盖 /etc/gitconfig 中的同名变量。 3.指定生成密钥的名字 生成密钥对（指定名字） ssh-keygen -t rsa -f ~/.ssh/id_rsa.lxbgithub 配置 ~/.ssh/config 文件 123Host github.comUser xblinIdentityFile ~/.ssh/id_rsa.lxbgithub]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Httpd文件服务器]]></title>
+    <url>%2F2018%2F11%2F09%2FLinux%2FHttpd%E2%95%AC%E2%94%80%E2%95%9D%E2%96%A0%E2%95%96%E2%96%A0%E2%95%AC%D1%91%E2%95%9E%D1%9E%2F</url>
+    <content type="text"><![CDATA[文件服务器搭建方法 Httpd(appache2) vsftpd python SimpleHTTPserver 搭建Httpd文件服务器1.安装 Centos: yum install httpdUbuntu: apt-get install apache2 2.配置 centos为例 查看httpd版本：httpd -v查看httpd配置文件路径： httpd -V配置文件默认目录: /ect/httpd/conf/httpd.conf修改配置文件：1.端口号 Listen 80`可以改为Listen 8000 或任意符合要求的端口 2.文件存放目录 DocumentRoot &quot;/home/xblin&quot; tips： 目录文件一定要有读的权限，最好放在/home下，否则会出现you don’t have permission. &lt;Directory &quot;/home/xblin&quot;&gt; #这个同上也要改 启动Httpd服务： 123service httpd stopservice httpd startservice httpd restart 3.Web查看网页登陆链接 http://机器ip：端口eg： http://10.32.115.38:8000第一次登陆会弹出欢迎界面注释 /ect/httpd/conf.d/welcome.conf再次登陆就能看到文件列表 4.文件下载wget http://机器ip：端口/文件名eg： wget http://10.32.115.38:8000/aa.txt 扩展进阶 设置密码登陆 前端界面设计]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[归并排序]]></title>
+    <url>%2F2018%2F11%2F01%2FAlgorithm%2F%E2%95%A3%D1%89%E2%96%93%D0%B2%E2%94%BC%E2%94%BC%E2%95%A8%D0%84%2F</url>
+    <content type="text"><![CDATA[归并排序 归并排序（MERGE-SORT）是利用归并的思想实现的排序方法，该算法采用经典的分治（divide-and-conquer）策略（分治法将问题分(divide)成一些小的问题然后递归求解，而治(conquer)的阶段则将分的阶段得到的各答案”修补”在一起，即分而治之)。 堆排序特点 不是原址排序 不稳定排序 T(n)=nlgn 归并排序步骤：1. 合并相邻有序子序列需要将两个已经有序的子序列合并成一个有序序列，eg [4,5,7,8]和[1,2,3,6]两个已经有序的子序列，合并为最终序列[1,2,3,4,5,6,7,8]。 2. 递归 分而治之 C++代码实现过程12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849/* filename: Merge_sort.cpp * * Author: xblin */#include &lt;iostream&gt;using namespace std;#define INF 1000000 //定义一个伪无穷大/*****************合并函数***************************/void Merge(int A[], int left, int mid, int right)&#123; int lenth1 = mid - left + 1; int lenth2 = right - mid; int *L = new int[lenth1+1]; //+1 为了存放结束标志 int *R = new int[lenth2+1]; //+1 为了存放结束标志 for (int i = 0; i &lt; lenth1; i++) L[i] = A[i + left]; for (int j = 0; j &lt; lenth2; j++) R[j] = A[j + mid + 1]; L[lenth1] = INF; //宏定义无穷大，结束标志 R[lenth2] = INF; //宏定义无穷大，结束标志 for (int i=0,j=0,k=left; k &lt;= right; k++)&#123; //从left遍历到right if (L[i] &lt; R[j]) A[k] = L[i++]; else A[k] = R[j++]; &#125; delete[]L; delete[]R;&#125;/*******************归并递归函数**********************/void Merge_sort(int A[], int left, int right)&#123; if (left &lt; right)&#123; int mid = (left + right) / 2; Merge_sort(A, left, mid); Merge_sort(A, mid + 1, right); Merge(A, left, mid, right); &#125;&#125;int main(int argc, char **argv)&#123; int aa[] = &#123;1,3,5,4,6,2&#125;; int Array_size = sizeof(aa) / sizeof(aa[0]); Merge_sort(aa, 0, Array_size-1); for (int i = 0; i &lt;= Array_size-1; i++) cout &lt;&lt; aa[i] &lt;&lt; endl; return 0;&#125;]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[快速排序]]></title>
+    <url>%2F2018%2F10%2F31%2FAlgorithm%2F%E2%94%90%D1%8C%E2%95%A6%E2%94%98%E2%94%BC%E2%94%BC%E2%95%A8%D0%84%2F</url>
+    <content type="text"><![CDATA[快排 参考书籍 《算法导论》 快排特点 分治思想 原址排序 T(n)=nlgn 快排缺点 最坏时间复杂度 T(n)=n^2 不稳定排序 快排步骤：Partition1.取基准数x，一般取最后一个base=A[n]2.小于base基数的放在左边，大于基数的base放在右边3.base放到两数之间，base就已经排好了序 QuickSort 除去base，左右两边分治，递归调用，快排完成 C++代码1234567891011121314151617181920212223242526272829303132333435363738/* filename: Quick_sort.cpp** Author: xblin*/#include &lt;iostream&gt;using namespace std;/************** 数组的划分函数 **************************/int Partition(int A[], int left, int right)&#123; int base = A[right]; //取最后一个为基准数 int j = left; //location for (int i = left; i &lt; right; i++)&#123; if (A[i] &lt; base) //小于base的放左边，大于base的放右边 std::swap(A[i], A[j++]); //标准库的交换变量函数 &#125; std::swap(A[j], A[right]); //base放到两数之间 return j; //返回中间base的下标&#125;/************** 快排的递归调用函数 *****************/void QuickSort(int A[], int left, int right)&#123; if (left &lt; right)&#123; int base = Partition(A, left, right); QuickSort(A, left, base - 1); QuickSort(A, base + 1, right); &#125;&#125;int main(int argc, char **argv)&#123; int aa[] = &#123; 2, 8, 7, 1, 3, 5, 6, 4 &#125;; int Array_size = sizeof(aa) / sizeof(int); QuickSort(aa, 0, Array_size-1); //快排 for (int i = 0; i &lt; Array_size; i++) cout &lt;&lt; aa[i] &lt;&lt; endl;&#125; 快排的优化快排最坏情况下的时间复杂度T(n)=n2，eg：6,5,4,3,2,1； 且base取最后一个1。要减小此概率的发生，base就要随机取一个 添加伪代码：思想：先随机取一个base，交换放到数组最后就行，然后正常调用Parition函数。1234Random_partition(A, l, r) i=Random(l, r) swap(A[r], A[i]) return Partition(A, l, r)]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[堆排序]]></title>
+    <url>%2F2018%2F10%2F30%2FAlgorithm%2F%E2%95%A2%E2%95%A4%E2%94%BC%E2%94%BC%E2%95%A8%D0%84%2F</url>
+    <content type="text"><![CDATA[堆排序 参考书籍： 《算法导论》 堆排序特点 原址排序 不稳定排序 T(n)=nlgn 堆排序缺点 最大的也是唯一的缺点就是——堆的维护问题，实际场景中的数据是频繁发生变动的，而对于待排序序列的每次更新（增，删，改），我们都要重新做一遍堆的维护，以保证其特性，这在大多数情况下都是没有必要的 每次移出堆顶最大元素后，都需要从顶部维护最大堆性质导致了过多的数据交换操作。 插入一个元素后（加到堆最后），又要重新进行整个堆算法。堆排序的总过程：一.确定父结点，左右孩子；二.维护最大堆 O(n)=lgn;三.建立最大堆四.堆排算法 T(n)=nlgn 1. 完全二叉树 数组 2.确定父结点，左孩子，右孩子123#define Parent(i) ((i-1)/2) //父结点#define Left(i) (i*2+1) //左孩子#define Right(i) (i*2+2) //右孩子 3.维护最大堆最大堆： 所有结点满足 父结点的值要大于左右孩子的值； A[Parent] &gt; A[i]C++代码：1234567891011121314151617/***************维护最大堆函数*****************/void Max_Heapify(int A[], int i, int Heap_size)&#123; int left = Left(i); //左孩子 int right = Right(i); //右孩子 int largest_num = i; //存放最大值的下标 if (left &lt; Heap_size &amp;&amp; A[left] &gt; A[i])&#123; largest_num = left; &#125; if (right &lt; Heap_size &amp;&amp; A[right] &gt; A[largest_num])&#123; //注意：这里一定要是largerst largest_num = right; &#125; if (largest_num != i)&#123; Swap(A[i], A[largest_num]); //交换两个值 Max_Heapify(A, largest_num, Heap_size); //递归调用，确保调换后保证最大堆的性质， 因为建堆是倒序的 &#125;&#125; 4.建立最大堆 从下往上以后Max_Heapify()函数 把A转化成最大堆 从有左右孩子的结点开始C++代码：1234567/***************建立最大堆函数*************************/void Build_MaxHeap(int A[], int Heap_size)&#123; for (int i = (Heap_size-2)/2; i &gt;= 0; i--)&#123; //从有孩子的结点开始建堆 Max_Heapify(A, i, Heap_size); //从下往上维护最大堆 &#125;&#125; 5.堆排序算法原理：最大元素A[0] 与 A[Heap_size] 交换后，断开A[Heap_size]，A.length-1; 然后维护最大堆，如此循环下去。C++代码：12345678910/***************堆排序算法**********************/void Heap_sort(int A[], int Heap_size)&#123; Build_MaxHeap(A, Heap_size); for (int i = Heap_size-1; i&gt;0; i--)&#123; Swap(A[i], A[0]); Max_Heapify(A, 0, i); //A.lenth -- 交换完A[0]最大值后，要断开 &#125;&#125; 最后附上C++整体代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364/* filename: Heap_sort.cpp * * Author: xblin */#include &lt;iostream&gt;using namespace std;#define Parent(i) ((i-1)/2) //i的父结点#define Left(i) (i*2+1) //i的左孩子#define Right(i) (i*2+2) //i的右孩子/*通过引用来交换变量值函数*/void Swap(int &amp;a, int &amp;b)&#123; int temp = a; a = b; b = temp;&#125;/***************维护最大堆函数*****************/void Max_Heapify(int A[], int i, int Heap_size)&#123; int left = Left(i); //左孩子 int right = Right(i); //右孩子 int largest_num = i; //存放最大值的下标 if (left &lt; Heap_size &amp;&amp; A[left] &gt; A[i])&#123; largest_num = left; &#125; if (right &lt; Heap_size &amp;&amp; A[right] &gt; A[largest_num])&#123; //注意：这里一定要是largerst largest_num = right; &#125; if (largest_num != i)&#123; Swap(A[i], A[largest_num]); Max_Heapify(A, largest_num, Heap_size); //递归调用，确保调换后保证最大堆的性质， 因为建堆是倒序的 &#125;&#125;/***************建立最大堆函数*************************/void Build_MaxHeap(int A[], int Heap_size)&#123; for (int i = (Heap_size-2)/2; i &gt;= 0; i--)&#123; //从有孩子的结点开始建堆 Max_Heapify(A, i, Heap_size); //从下往上维护最大堆 &#125;&#125;/***************堆排序算法**********************/void Heap_sort(int A[], int Heap_size)&#123; Build_MaxHeap(A, Heap_size); for (int i = Heap_size-1; i&gt;0; i--)&#123; Swap(A[i], A[0]); Max_Heapify(A, 0, i); //A.lenth -- 交换完A[0]最大值后，要断开 &#125;&#125;int main(int argc, char **argv)&#123; int aa[] = &#123;4,1,3,2,16,9,10,14,8,7&#125;; int Heap_size = sizeof(aa) / sizeof(aa[0]); //C++算数组长度，也可用sizeof(aa)/sizeof(int); Heap_sort(aa, Heap_size); //堆排序算法 for (int i = 0; i &lt; Heap_size;i++) cout &lt;&lt; aa[i] &lt;&lt; endl; //输出数组 return 0;&#125; 最大优先级队列实质是对一个最大堆的查找，插入，删除操作 Insert(S, x): 把元素x插入最大堆S中。 Maximum(S): 返回S中具有最大关键字的元素 Increase-Key(S,x,k): 将元素x的值增加到k后维护最大堆 1.Increase-Key(S,x,k)：该增加后的值不断与父结点比较。 2.插入元素到最大堆：先把元素放到堆尾，然后调用Increase-Key(S,x,k)]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[排序]]></title>
+    <url>%2F2018%2F10%2F30%2FAlgorithm%2F%E2%94%BC%E2%94%BC%E2%95%A8%D0%84%2F</url>
+    <content type="text"><![CDATA[稳定性排序和非稳定性排序稳定性排序：能保证排序后2个相等的数前后位置顺序不变。eg：插入排序、冒泡排序、归并排序。 非稳定排序： 相反。 原址排序 插排，堆排，快排非： 归并排序 一、归并排序1.时间复杂度O(n) = nlgn 2.代码实现 最大子数组问题二、堆排序1.确定父结点，左孩子，右孩子2.维护最大堆]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[刷题笔记]]></title>
+    <url>%2F2018%2F10%2F29%2FPractice%2F%E2%95%A6%D0%B2%E2%95%A0%D1%82%E2%96%92%E2%95%A9%E2%95%9D%E2%95%9F%2F</url>
+    <content type="text"><![CDATA[1. 等差数列的求和公式= （首相 + 末项） * 项数 ／ 2；]]></content>
+      <categories>
+        <category>Practice</category>
+      </categories>
+      <tags>
+        <tag>Practice</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[欧拉计划第三题]]></title>
+    <url>%2F2018%2F10%2F29%2FPractice%2F%E2%94%BC%E2%95%96%E2%94%94%D0%BD%E2%95%9D%E2%95%9E%E2%95%97%D0%BE%E2%95%A1%E2%94%8C%E2%95%9A%C2%A4%E2%95%A0%D1%82%2F</url>
+    <content type="text"><![CDATA[The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143 ? 13195的主要素因子是5,7,13和29。 600851475143的最大素因子是什么？ 答案：6857思路我们可以知道任意的合数可以由两个数相乘得来，如c = a * b，假设a&lt;= b，则 a&lt;=根号c，b&gt;=根号c。 注意： 1.所求数字太大，用宏定义使代码不冗余 2.当num不为1时，表明它的最大素因子是它本身 12345678910111213141516171819#include &lt;stdio.h&gt;#include &lt;inttypes.h&gt;#define NUM 600851475143int main()&#123; int64_t num = NUM; int64_t prime_max; for(int64_t i = 2; i * i &lt;= NUM; i++)&#123; while(num % i == 0)&#123; num /= i; prime_max = i; &#125; &#125; if(num != 1) prime_max = num; printf("%"PRId64"\n", prime_max); return 0;&#125;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[欧拉计划第二题]]></title>
+    <url>%2F2018%2F10%2F29%2FPractice%2F%E2%94%BC%E2%95%96%E2%94%94%D0%BD%E2%95%9D%E2%95%9E%E2%95%97%D0%BE%E2%95%A1%E2%94%8C%E2%95%A2%E2%96%A0%E2%95%A0%D1%82%2F</url>
+    <content type="text"><![CDATA[Each new term in the Fibonacci sequence is generated by adding the previous two terms. By starting with 1 and 2, the first 10 terms will be: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, … By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms. Fibonacci序列中的每个新术语都是通过添加前两个术语生成的。从1和2开始，前10个术语将是： 1,2,3,5,8,13,21,34,55,89 …… 通过考虑Fibonacci序列中的值不超过四百万的项，找到偶数项的总和。 答案：46137321.暴力求解法—开辟数组法从题中我们可以想到一种方法就是开数组，将得到的Fibonacci数放到数组中，一步一步循环相加 （1）用f[0]做计数器，记录有多少个Fibonacci数； （2）用f[f[0]] = f[f[0] - 1] + f[f[0] - 2]计算Fibonacci数 1234567891011121314151617181920#include &lt;stdio.h&gt;int main()&#123; int f[500] = &#123;0&#125;; f[0] = 2; f[1] = 1; f[2] = 2; while (f[f[0]] &lt; 4000000) &#123; f[0]++; f[f[0]] = f[f[0] - 1] + f[f[0] - 2]; &#125; int sum = 0; for(int i = 1; i &lt;= f[0]; i++)&#123; if(f[i] % 2 == 0) sum += f[i]; &#125; printf("%d\n", sum); return 0;&#125; 2.优化开辟数组法其实我们并不需要开辟那么大的数组记录全部的Fbionacci数，只需要开辟一个大小为3的数组即可，大大减小了空间 通过考虑Fibonacci序列中的值不超过四百万的项，找到偶数项的总和。 1234567891011121314151617#include &lt;stdio.h&gt;int main()&#123; int f[3] = &#123;0&#125;; f[0] = 1; f[1] = 2; int sum = 0; for(int i = 2; f[2] &lt; 4000000; i++)&#123; f[i % 3] = f[(i - 1) % 3] + f[(i - 2) % 3]; if(f[i % 3] % 2 == 0)&#123; sum += f[i % 3]; &#125; &#125; printf("%d\n", sum + 2); return 0;&#125; 3.最优版plus由于我们只需要不断更新一个Fibonacci数，就可以进行求和运算，所以我们并不需要开辟数组，只需要不断更新b的值就可以了。 通过考虑Fibonacci序列中的值不超过四百万的项，找到偶数项的总和。 123456789101112131415#include &lt;stdio.h&gt;int main()&#123; int a = 1, b = 1, c; int sum = 0; while(b &lt; 4000000)&#123; if(b % 2 == 0) sum += b; c = b; b = b + a; a = c; &#125; printf("%d\n", sum); return 0;&#125;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[欧拉计划第一题]]></title>
+    <url>%2F2018%2F10%2F29%2FPractice%2F%E2%94%BC%E2%95%96%E2%94%94%D0%BD%E2%95%9D%E2%95%9E%E2%95%97%D0%BE%E2%95%A1%E2%94%8C%E2%95%A5%E2%95%97%E2%95%A0%D1%82%2F</url>
+    <content type="text"><![CDATA[If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000. 如果我们列出所有低于10的自然数是3或5的倍数，我们得到3,5,6和9，这些倍数的总和为23。 找到1000以下所有3或5的倍数的总和。 答案为2331681.暴力求解法从1遍历到1000，将能被3和5整除的数相加到sum中，注意存在既能整除3又能整除5的数，所以用或运算 12345678910111213#include &lt;stdio.h&gt;int main()&#123; int sum = 0; for(int i = 1; i &lt; 1000; i++)&#123; if((i % 3 == 0) || (i % 5 == 0))&#123; sum += i; &#125; &#125; printf("%d\n", sum); return 0;&#125; 2.技巧求解法由于我们初中的时候求过等差数列的求和运算，所以在这里，我们并不需要花费那么多时间去遍历，于是我们巧用公式等差数列的求和公式= （首相 + 末项） * 项数 ／ 2； 注意：在这里能被3和5同时整除的数加了两次，所以我们需要把重复加的数字通过公式减下去 1234567891011#include &lt;stdio.h&gt;int main()&#123; int sum3, sum5, sum15; sum3 = (3 + 999) * (999 / 3) / 2; sum5 = (5 + 995) * (995 / 5) / 2; sum15 = (15 + 990) * (990 / 15) / 2; printf("%d\n", sum3 + sum5 - sum15); return 0;&#125;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Markdown笔记]]></title>
+    <url>%2F2018%2F10%2F29%2FLinux%2FMarkdown%E2%96%92%E2%95%A9%E2%95%9D%E2%95%9F%2F</url>
+    <content type="text"><![CDATA[Written by xblin 标题123456# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题 注：# 和「一级标题」之间建议保留一个字符的空格，这是最标准的 Markdown 写法 代码注释1.单行注释code 2.多行注释1234#include &lt;iostream&gt;int main(void)&#123; count &lt;&lt;"hello world!"&lt;&lt;endl;&#125; 列表1.无序列表123- 文本1- 文本2- 文本3 output： 文本1 文本2 文本3 2.有序列表1231. 文本12. 文本23. 文本3 表格12345标题1 | 标题2 | 标题3 |----- | :---- | ----: |lab1 | lab2 | lab3 |注： :---- 为左对齐 ， ----:为右对齐 output: 标题1 标题2 标题3 lab1 lab2 lab3 下划线1---- output: 空格和换行####空格1.按shift + space 切换为全角模式，输入空格就有效2.1&amp;bsp; aa 换行12&lt;br/&gt;下行文本 output:aa]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux常用命令]]></title>
+    <url>%2F2018%2F10%2F29%2FLinux%2FLinux%E2%94%82%D0%B3%E2%95%99%E2%94%9C%E2%94%9C%E2%84%96%E2%94%B4%D1%8E%2F</url>
+    <content type="text"><![CDATA[1.rz -be ; sz2.scp3.head ; tail4.alias5.esc+.6.ctrl-R7.top]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Vim基本操作]]></title>
+    <url>%2F2018%2F10%2F29%2FLinux%2FVim%E2%95%97%E2%88%99%E2%96%92%E2%95%9B%E2%96%93%E2%94%98%E2%95%AB%D1%9E%2F</url>
+    <content type="text"><![CDATA[####1.方向移动（hjkl代替方向键移动）tytal123 kh l j ####2.插入编辑1i a A o ####3.删除，替换，复制粘贴 操作 命令 删除 x dw de d$ dd 2dd 替换 rx R 复制 v….v +y or yy 粘贴 p ####4.移动到home和end 123456home: 0end: $start： ggended： G查看文本信息： CTRL+G回到前一次编辑的地方： &apos;0 ####5.撤销和反撤销 12撤销： u反撤销： CTRL-R ####6.查找和替换 12345678910设置显示行号： set nu查找 ： /xxx查找下(上)一个： n N显示该字的关键字： *取消高亮显示： nohls高亮显示： hls替换：%s/old/new/g ####7.自动补全 CTRL-P ####8.写入文件 or 文件另存为 :w filename]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+</search>
