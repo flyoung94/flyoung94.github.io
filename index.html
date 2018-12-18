@@ -392,7 +392,7 @@
         
           <h2 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h2><p>下载kubernetes client或kubernetes server<br>url：<code>https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.11.md#server-binaries</code></p>
 <p>用途： 容器的编排</p>
-<p>K8s集群架构<br><img src="http://wx4.sinaimg.cn/large/007fPWmPly1fy41o16pa1j30jm0br0t9.jpg" alt="k8s"></p>
+<p>K8s集群架构</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/12/10/Linux/Kubernetes/#more" rel="contents">
@@ -543,11 +543,6 @@
 </blockquote>
 <p>散列表(hash table)是从一个集合A到另一个集合B的映射(mapping)。</p>
 <p><strong>区别与直接寻址表（数组表）：</strong><br>如果全域U很大，则要开辟的内存空间就要很大。但实际集合K相对U来说可能很小，所以开辟的空间就会浪费。</p>
-<h4 id="散列表冲突解决"><a href="#散列表冲突解决" class="headerlink" title="散列表冲突解决"></a>散列表冲突解决</h4><ul>
-<li>链接法</li>
-<li>开放寻址法</li>
-<li>字符串hash</li>
-</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/11/19/Algorithm/╔в┴╨▒э/#more" rel="contents">
@@ -695,8 +690,6 @@
         
           <h2 id="密钥"><a href="#密钥" class="headerlink" title="密钥"></a>密钥</h2><p><strong>公钥与私钥：</strong></p>
 <p>1.公钥加密，私钥解密<br>2.私钥数字签名，公钥验证</p>
-<h2 id="SSH密码登陆原理（公钥加密）"><a href="#SSH密码登陆原理（公钥加密）" class="headerlink" title="SSH密码登陆原理（公钥加密）"></a>SSH密码登陆原理（公钥加密）</h2><p><strong>用户登陆远程机：</strong></p>
-<p>1.远程主机收到用户的登录请求，把自己的公钥发给用户<br>2.用户使用这个公钥，将登陆密码加密后，发给远程机<br>3.远程机用自己的私钥，解密登陆密码，确定正确，同意用户登陆</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/11/15/Linux/Git░▓╫░┼ф╓├║═╩╣╙├/#more" rel="contents">
@@ -999,21 +992,19 @@
 
       
         
-          
-            <h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>　　归并排序（MERGE-SORT）是利用归并的思想实现的排序方法，该算法采用经典的分治（divide-and-conquer）策略（分治法将问题分(divide)成一些小的问题然后递归求解，而治(conquer)的阶段则将分的阶段得到的各答案”修补”在一起，即分而治之)。</p>
+          <h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>　　归并排序（MERGE-SORT）是利用归并的思想实现的排序方法，该算法采用经典的分治（divide-and-conquer）策略（分治法将问题分(divide)成一些小的问题然后递归求解，而治(conquer)的阶段则将分的阶段得到的各答案”修补”在一起，即分而治之)。</p>
 <h4 id="堆排序特点"><a href="#堆排序特点" class="headerlink" title="堆排序特点"></a>堆排序特点</h4><ul>
 <li>不是原址排序</li>
 <li>不稳定排序</li>
 <li>T(n)=nlgn</li>
 </ul>
-<h4 id="归并排序步骤："><a href="#归并排序步骤：" class="headerlink" title="归并排序步骤："></a>归并排序步骤：</h4><p><strong>1. 合并相邻有序子序列</strong><br>需要将两个已经有序的子序列合并成一个有序序列，eg [4,5,7,8]和[1,2,3,6]两个已经有序的子序列，合并为最终序列[1,2,3,4,5,6,7,8]。</p>
-<p><img src="./image/merge2.png" alt="merge1"></p>
-<p><strong>2. 递归 分而治之</strong></p>
-<p><img src="./image/merge1.png" alt="merge1.png"></p>
-<hr>
-<h4 id="C-代码实现过程"><a href="#C-代码实现过程" class="headerlink" title="C++代码实现过程"></a>C++代码实现过程</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* filename: Merge_sort.cpp</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Author:   xblin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 1000000    <span class="comment">//定义一个伪无穷大</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*****************合并函数***************************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> left, <span class="keyword">int</span> mid, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> lenth1 = mid - left + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> lenth2 = right - mid;</span><br><span class="line">	<span class="keyword">int</span> *L = <span class="keyword">new</span> <span class="keyword">int</span>[lenth1+<span class="number">1</span>];   <span class="comment">//+1 为了存放结束标志</span></span><br><span class="line">	<span class="keyword">int</span> *R = <span class="keyword">new</span> <span class="keyword">int</span>[lenth2+<span class="number">1</span>];   <span class="comment">//+1 为了存放结束标志</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenth1; i++)</span><br><span class="line">		L[i] = A[i + left];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; lenth2; j++)</span><br><span class="line">		R[j] = A[j + mid + <span class="number">1</span>];</span><br><span class="line">	L[lenth1] = INF;  <span class="comment">//宏定义无穷大，结束标志</span></span><br><span class="line">	R[lenth2] = INF;  <span class="comment">//宏定义无穷大，结束标志</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>,k=left; k &lt;= right; k++)&#123;   <span class="comment">//从left遍历到right</span></span><br><span class="line">		<span class="keyword">if</span> (L[i] &lt; R[j])</span><br><span class="line">			A[k] = L[i++];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			A[k] = R[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span>[]L;</span><br><span class="line">	<span class="keyword">delete</span>[]R;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*******************归并递归函数**********************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge_sort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (left &lt; right)&#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">		Merge_sort(A, left, mid);</span><br><span class="line">		Merge_sort(A, mid + <span class="number">1</span>, right);</span><br><span class="line">		Merge(A, left, mid, right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> aa[] = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">2</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> Array_size = <span class="keyword">sizeof</span>(aa) / <span class="keyword">sizeof</span>(aa[<span class="number">0</span>]);</span><br><span class="line">	Merge_sort(aa, <span class="number">0</span>, Array_size<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= Array_size<span class="number">-1</span>; i++)</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; aa[i] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/01/Algorithm/╣щ▓в┼┼╨Є/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1526,148 +1517,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/Linux/Linux│г╙├├№┴ю/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="flyoung94">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/bear_mj.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="linxubin's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/29/Linux/Linux│г╙├├№┴ю/" itemprop="url">Linux常用命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-29T11:58:00+08:00">
-                2018-10-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.rz -be ; sz<br>2.scp<br>3.head ;  tail<br>4.alias<br>5.esc+.<br>6.ctrl-R<br>7.top</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/Linux/Vim╗∙▒╛▓┘╫ў/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1877,7 +1726,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

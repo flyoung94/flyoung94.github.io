@@ -89,17 +89,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux常用命令]]></title>
-    <url>%2F2018%2F10%2F29%2FLinux%2FLinux%E2%94%82%D0%B3%E2%95%99%E2%94%9C%E2%94%9C%E2%84%96%E2%94%B4%D1%8E%2F</url>
-    <content type="text"><![CDATA[1.rz -be ; sz2.scp3.head ; tail4.alias5.esc+.6.ctrl-R7.top]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Vim基本操作]]></title>
     <url>%2F2018%2F10%2F29%2FLinux%2FVim%E2%95%97%E2%88%99%E2%96%92%E2%95%9B%E2%96%93%E2%94%98%E2%95%AB%D1%9E%2F</url>
     <content type="text"><![CDATA[####1.方向移动（hjkl代替方向键移动）tytal123 kh l j ####2.插入编辑1i a A o ####3.删除，替换，复制粘贴 操作 命令 删除 x dw de d$ dd 2dd 替换 rx R 复制 v….v +y or yy 粘贴 p ####4.移动到home和end 123456home: 0end: $start： ggended： G查看文本信息： CTRL+G回到前一次编辑的地方： &apos;0 ####5.撤销和反撤销 12撤销： u反撤销： CTRL-R ####6.查找和替换 12345678910设置显示行号： set nu查找 ： /xxx查找下(上)一个： n N显示该字的关键字： *取消高亮显示： nohls高亮显示： hls替换：%s/old/new/g ####7.自动补全 CTRL-P ####8.写入文件 or 文件另存为 :w filename]]></content>
