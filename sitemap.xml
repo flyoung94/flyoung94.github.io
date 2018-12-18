@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/12/10/Linux/Kubernetes/</loc>
+    
+    <lastmod>2018-12-18T12:57:58.089Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/10/30/Algorithm/%E2%94%BC%E2%94%BC%E2%95%A8%D0%84/</loc>
     
     <lastmod>2018-12-18T03:55:23.196Z</lastmod>
@@ -93,13 +100,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/12/10/Linux/Kubernetes/</loc>
-    
-    <lastmod>2018-12-18T03:55:23.180Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2018/10/29/Linux/Markdown%E2%96%92%E2%95%A9%E2%95%9D%E2%95%9F/</loc>
     
     <lastmod>2018-12-18T03:55:23.180Z</lastmod>
@@ -114,14 +114,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
+    <loc>http://yoursite.com/categories/index.html</loc>
     
     <lastmod>2018-12-18T03:55:23.176Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
+    <loc>http://yoursite.com/tags/index.html</loc>
     
     <lastmod>2018-12-18T03:55:23.176Z</lastmod>
     

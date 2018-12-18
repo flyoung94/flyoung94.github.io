@@ -390,20 +390,9 @@
 
       
         
-          
-          Kubernetes下载kubernetes client或kubernetes serverurl：https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.11.md#server-binaries
-用途： 容器的编排
-K8s集群架构
-Master NodeMaster 提供集群的管理控制中心，调度，控制集群的资源，包含：
-
-API Server： 任何的资源请求/调用操作都是通过 Kube-apiserver 提供的接口进行
-Controller： 运行管理控制器，它们是集群中处理常规任务的后台线程。
-Schedule：调度Node的Pod，为Pod选择一个Node。优先级队列的选择
-
-Node： 运行容器，运行服务的节点Kubelet：是主要的节点代理，它会监视已分配给节点的pod，具体功能：
-
-安装Pod所需
-          ...
+          <h2 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h2><p>下载kubernetes client或kubernetes server<br>url：<code>https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.11.md#server-binaries</code></p>
+<p>用途： 容器的编排</p>
+<p>K8s集群架构<br><img src="http://wx4.sinaimg.cn/large/007fPWmPly1fy41o16pa1j30jm0br0t9.jpg" alt="k8s"></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/12/10/Linux/Kubernetes/#more" rel="contents">
@@ -550,18 +539,11 @@ Node： 运行容器，运行服务的节点Kubelet：是主要的节点代理�
       
         
           
-          二叉搜索树
-参考资料: 《算法导论》Reference URL:  https://www.cnblogs.com/skywang12345/p/3576328.html
-
+            <h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><blockquote>
+<p>参考资料: 《算法导论》<br>Reference URL:  <code>https://www.cnblogs.com/skywang12345/p/3576328.html</code></p>
+</blockquote>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/Algorithm/╢■▓ц╦╤╦ў╩ў/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -701,27 +683,37 @@ Node： 运行容器，运行服务的节点Kubelet：是主要的节点代理�
       
         
           
-          散列表
-参考 《算法导论》
+            <h2 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h2><blockquote>
+<p>参考 《算法导论》</p>
+</blockquote>
+<p>散列表(hash table)是从一个集合A到另一个集合B的映射(mapping)。</p>
+<p><strong>区别与直接寻址表（数组表）：</strong><br>如果全域U很大，则要开辟的内存空间就要很大。但实际集合K相对U来说可能很小，所以开辟的空间就会浪费。</p>
+<h4 id="散列表冲突解决"><a href="#散列表冲突解决" class="headerlink" title="散列表冲突解决"></a>散列表冲突解决</h4><ul>
+<li>链接法</li>
+<li>开放寻址法</li>
+<li>字符串hash</li>
+</ul>
+<p><strong>1. 链接法</strong><br>　　将所有关键字为同义词的结点链接在同一个链表中。若选定的散列表长度为m，则可将散列表定义为一个由m个头指针组成的指针数组T[0..m-1]。凡是散列地址为i的结点，均插入到以T[i]为头指针的单链表中。T中各分量的初值均应为空指针。在拉链法中，装填因子α可以大于1，但一般均取。</p>
+<p><img src="./image/hash1.png" alt="hash1"></p>
+<p><strong>2. 开放寻址法</strong><br>    冲突元素探测时从i=0开始，首先探查T[h’(k)]，然后依次探测T[h’(k)+1]，…，直到T[h’(k)+m-1]，此后又循环到T[0]，T[1]，…，直到探测到T[h’(k)-1]为止。装载因子α≤1。</p>
+<p>探查：</p>
+<ul>
+<li>线性探查</li>
+<li>二次探查</li>
+<li>双重探查</li>
+</ul>
+<p>缺点： 删除元素比较困难</p>
+<h4 id="散列函数（映射）"><a href="#散列函数（映射）" class="headerlink" title="散列函数（映射）"></a>散列函数（映射）</h4><ul>
+<li>除法散列</li>
+<li>乘法散列</li>
+<li>全域散列 </li>
+</ul>
+<h4 id="散列表应用"><a href="#散列表应用" class="headerlink" title="散列表应用"></a>散列表应用</h4><ol>
+<li>保存密码<br>计算机的登陆密码，一般是一串字符。然而，为了安全起见，计算机不会直接保存该字符串，而是保存该字符串的hash值(使用<strong>MD5</strong>、<strong>SHA</strong>或者其他算法作为hash函数)。当用户下次登陆的时候，输入密码字符串。如果该密码字符串的hash值与保存的hash值一致，那么就认为用户输入了正确的密码。这样，就算黑客闯入了数据库中的密码记录，他能看到的也只是密码的hash值。上面所使用的hash函数有很好的单向性：很难从hash值去推测键值。<br><br></li>
+<li>git内容变化<br>git中，文件内容为键值，并用SHA算法作为hash function，将文件内容对应为固定长度的字符串(hash值)。如果文件内容发生变化，那么所对应的字符串就会发生变化。git通过比较较短的hash值，就可以知道文件内容是否发生变动。</li>
+</ol>
 
-散列表(hash table)是从一个集合A到另一个集合B的映射(mapping)。
-区别与直接寻址表（数组表）：如果全域U很大，则要开辟的内存空间就要很大。但实际集合K相对U来说可能很小，所以开辟的空间就会浪费。
-散列表冲突解决
-链接法
-开放寻址法
-字符串hash
-
-1. 链接法　　将所有关键字为同义词的结点链接在同一个链表中。若选定的散列表长度为m，则可将散列表定义为一个由m个头指针组成的指针数组T[0..m-1]。凡是散列地址为i的结点，均插入到以T[i]为头指针的单链表中。T中各分量的初值均应为空指针。在拉链法中，装填因子α可以大于1，但一般均取。
-
-2. 开放寻址法    冲突元素探测时从i=0开始，首先探查T[h’(k)]，然后依次探测T[h’(k)+1]，…，直到T[h’(k)+m-1]，此后又循环到T[0]，T[1]，…，直到探测到T[h’(k
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/19/Algorithm/╔в┴╨▒э/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -861,20 +853,47 @@ Node： 运行容器，运行服务的节点Kubelet：是主要的节点代理�
       
         
           
-          密钥公钥与私钥：
-1.公钥加密，私钥解密2.私钥数字签名，公钥验证
-SSH密码登陆原理（公钥加密）用户登陆远程机：
-1.远程主机收到用户的登录请求，把自己的公钥发给用户2.用户使用这个公钥，将登陆密码加密后，发给远程机3.远程机用自己的私钥，解密登陆密码，确定正确，同意用户登陆
-解决存在风险： 中间人攻击
-截获用户登陆请求，冒充远程机，伪造公钥发给用户，获取远程机密码1.known_hosts文件 （区别于authorized_keys文件）当用户接收远程主机的公钥后，它就会被保存在文件~/.ssh/known_hosts之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，可以辨别中间人的伪造公钥。2.口令登陆第一次登陆远程机，用户没有其公钥，为防止中间人攻击，系统会出现下面提示：1234567$ ssh user@host　　The authenticity of host 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/15/Linux/Git░▓╫░┼ф╓├║═╩╣╙├/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2 id="密钥"><a href="#密钥" class="headerlink" title="密钥"></a>密钥</h2><p><strong>公钥与私钥：</strong></p>
+<p>1.公钥加密，私钥解密<br>2.私钥数字签名，公钥验证</p>
+<h2 id="SSH密码登陆原理（公钥加密）"><a href="#SSH密码登陆原理（公钥加密）" class="headerlink" title="SSH密码登陆原理（公钥加密）"></a>SSH密码登陆原理（公钥加密）</h2><p><strong>用户登陆远程机：</strong></p>
+<p>1.远程主机收到用户的登录请求，把自己的公钥发给用户<br>2.用户使用这个公钥，将登陆密码加密后，发给远程机<br>3.远程机用自己的私钥，解密登陆密码，确定正确，同意用户登陆</p>
+<p><strong>解决存在风险： 中间人攻击</strong></p>
+<p>截获用户登陆请求，冒充远程机，伪造公钥发给用户，获取远程机密码<br>1.known_hosts文件 （区别于authorized_keys文件）<br>当用户接收远程主机的公钥后，它就会被保存在文件<code>~/.ssh/known_hosts</code>之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，可以辨别中间人的伪造公钥。<br>2.口令登陆<br>第一次登陆远程机，用户没有其公钥，为防止中间人攻击，系统会出现下面提示：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ ssh user@host</span><br><span class="line"></span><br><span class="line">　　The authenticity of host <span class="string">'host (12.18.429.21)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">　　RSA key fingerprint is 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">　　Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure></p>
+<p>提示：无法确认host主机的真实性，只知道它的公钥指纹，是否继续登陆？<br>上面　<code>98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d</code> 就是远程机的公钥指纹，为了安全登陆，可以确认远程机的公钥指纹，一般远程机会贴在自己的网站上，以便用户自行核对。</p>
+<h2 id="SSH免密登陆原理-RSA加密技术"><a href="#SSH免密登陆原理-RSA加密技术" class="headerlink" title="SSH免密登陆原理(RSA加密技术)"></a>SSH免密登陆原理(RSA加密技术)</h2><p>Step1：SSH密钥配置<br>1.在A上生成密钥对<br>2.将A的公钥拷贝到B上<br>3.在B上将A的公钥写入到授权列表文件authorized_keys中</p>
+<p><img src="http://wx4.sinaimg.cn/large/007fPWmPly1fy41o2n2plj30d3097wfo.jpg" alt=""></p>
+<p>Step2: SSH免密登陆原理（git登陆原理，B相当于git服务器）<br>1.A请求登陆B<br>2.B查看授权列表<br>3.B把A的公钥加密一随机字符串发给A<br>4.A用私钥解密B发送过来的字符串<br>5.A用私钥加密结果发送给B（数字签名）<br>6.B用A的公钥验证A发过来的解密字符串<br>7.验证通过登陆成功</p>
+<p><img src="http://wx1.sinaimg.cn/large/007fPWmPly1fy41o2x097j30j608babp.jpg" alt=""></p>
+<h2 id="SSH生成迷密钥对"><a href="#SSH生成迷密钥对" class="headerlink" title="SSH生成迷密钥对"></a>SSH生成迷密钥对</h2><p><code>ssh-keygen -t rsa -f ~/.ssh/id_rsa.${name} -P &quot;&quot; -q</code></p>
+<p>-t参数：加密方式rsa<br>-f参数：文件名及保存路径 eg： id_rsa.xblin id_rsa.xblin.pub<br>-P参数：提取密钥的密码，默认为无</p>
+<h3 id="配置config文件"><a href="#配置config文件" class="headerlink" title="配置config文件"></a>配置config文件</h3><p><code>~/.ssh/config</code><br>SSH默认读取id_rsa这个私钥<br>修改配置指定路径和名字：</p>
+<p>1.Host          #主机地址<br>2.User          #认证用户<br>3.IdentifyFile  #认证私钥路径 </p>
+<blockquote>
+<p>Tips : Host * 匹配所有的主机</p>
+</blockquote>
+<p>eg：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host icode.baidu.com</span><br><span class="line">User linxubin</span><br><span class="line">IdentityFile ~/.ssh/id_rsa.linxubin</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Important: config文件权限必须是644</p>
+</blockquote>
+<h3 id="Shell脚本代码实现"><a href="#Shell脚本代码实现" class="headerlink" title="Shell脚本代码实现"></a>Shell脚本代码实现</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="function"><span class="title">usage</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">ssh_config</span></span>()&#123;</span><br><span class="line">    name=<span class="variable">$1</span></span><br><span class="line">    Remote_Host=<span class="variable">$2</span></span><br><span class="line"></span><br><span class="line">    yum install -y expect</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [[ ! -f ~/.ssh/id_rsa.<span class="variable">$&#123;name&#125;</span>.pub ]]; <span class="keyword">then</span></span><br><span class="line">        ssh-keygen -t rsa -f ~/.ssh/id_rsa.<span class="variable">$1</span> -P <span class="string">""</span> -q  <span class="comment">#no passphrase</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"Host *"</span> &gt;&gt; ~/.ssh/config</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"User <span class="variable">$&#123;name&#125;</span>"</span> &gt;&gt; ~/.ssh/config</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"IdentityFile ~/.ssh/id_rsa.<span class="variable">$&#123;name&#125;</span>"</span> &gt;&gt; ~/.ssh/config</span><br><span class="line"></span><br><span class="line">        chmod 644 ~/.ssh/config  <span class="comment"># chmod must 644</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    ssh root@<span class="variable">$&#123;Remote_Host&#125;</span> <span class="string">"cat &gt;&gt; /root/.ssh/authorized_keys"</span> &lt; /root/.ssh/id_rsa.<span class="variable">$&#123;name&#125;</span>.pub</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ssh_config <span class="variable">$1</span> <span class="variable">$2</span></span><br></pre></td></tr></table></figure>
+<h2 id="Github-ssh配置"><a href="#Github-ssh配置" class="headerlink" title="Github ssh配置"></a>Github ssh配置</h2><h3 id="一-git-clone命令"><a href="#一-git-clone命令" class="headerlink" title="一. git clone命令"></a>一. git clone命令</h3><p>本地主机clone远程github仓库不需要建立信任关系</p>
+<h3 id="二-ssh建立信任关系"><a href="#二-ssh建立信任关系" class="headerlink" title="二. ssh建立信任关系"></a>二. ssh建立信任关系</h3><p>1.生成密钥对： <code>ssh-keygen -t rsa</code><br>2.gitconfig配置 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;xxx&quot;   ##github用户名</span><br><span class="line">$ git config --global user.email xxx@example.com  ##github注册邮箱</span><br></pre></td></tr></table></figure>
+<ul>
+<li>/etc/gitconfig 文件：系统中对所有用户都普遍适用的配置。若使用 git config 时用 –system 选项，读写的就是这个文件</li>
+<li>~/.gitconfig 文件：用户目录下的配置文件只适用于该用户。若使用 git config 时用 –global 选项，读写的就是这个文件。</li>
+<li>当前项目的 Git 目录中的配置文件（也就是工作目录中的 .git/config 文件）：这里的配置仅仅针对当前项目有效。每一个级别的配置都会覆盖上层的相同配置，所以 .git/config 里的配置会覆盖 /etc/gitconfig 中的同名变量。</li>
+</ul>
+<p>3.指定生成密钥的名字</p>
+<ul>
+<li>生成密钥对（指定名字） <code>ssh-keygen -t rsa -f ~/.ssh/id_rsa.lxbgithub</code></li>
+<li>配置 ~/.ssh/config 文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">User xblin</span><br><span class="line">IdentityFile ~/.ssh/id_rsa.lxbgithub</span><br></pre></td></tr></table></figure>
+<hr>
+
+          
         
       
     </div>
@@ -1014,33 +1033,35 @@ SSH密码登陆原理（公钥加密）用户登陆远程机：
       
         
           
-          文件服务器搭建方法
-Httpd(appache2)
-vsftpd
-python SimpleHTTPserver
+            <h2 id="文件服务器搭建方法"><a href="#文件服务器搭建方法" class="headerlink" title="文件服务器搭建方法"></a>文件服务器搭建方法</h2><ul>
+<li>Httpd(appache2)</li>
+<li>vsftpd</li>
+<li>python SimpleHTTPserver</li>
+</ul>
+<h2 id="搭建Httpd文件服务器"><a href="#搭建Httpd文件服务器" class="headerlink" title="搭建Httpd文件服务器"></a>搭建Httpd文件服务器</h2><h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h4><blockquote>
+<p>Centos: yum install httpd<br>Ubuntu: apt-get install apache2</p>
+</blockquote>
+<h4 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h4><blockquote>
+<p>centos为例</p>
+</blockquote>
+<p><strong>查看httpd版本</strong>：<code>httpd -v</code><br><strong>查看httpd配置文件路径：</strong> <code>httpd -V</code><br><strong>配置文件默认目录:</strong> <code>/ect/httpd/conf/httpd.conf</code><br><strong>修改配置文件：</strong><br>1.端口号</p>
+<p>Listen 80`<br>可以改为Listen 8000 或任意符合要求的端口</p>
+<p>2.文件存放目录</p>
+<p><code>DocumentRoot &quot;/home/xblin&quot;</code></p>
+<blockquote>
+<p>tips： 目录文件一定要有读的权限，最好放在/home下，否则会出现you don’t have permission.</p>
+</blockquote>
+<p><code>&lt;Directory &quot;/home/xblin&quot;&gt;  #这个同上也要改</code></p>
+<p><strong>启动Httpd服务：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service httpd stop</span><br><span class="line">service httpd start</span><br><span class="line">service httpd restart</span><br></pre></td></tr></table></figure>
+<h4 id="3-Web查看"><a href="#3-Web查看" class="headerlink" title="3.Web查看"></a>3.Web查看</h4><p>网页登陆链接 http://机器ip：端口<br>eg： <code>http://10.32.115.38:8000</code><br><em>第一次登陆会弹出欢迎界面</em><br>注释  <code>/ect/httpd/conf.d/welcome.conf</code><br><em>再次登陆就能看到文件列表</em></p>
+<h4 id="4-文件下载"><a href="#4-文件下载" class="headerlink" title="4.文件下载"></a>4.文件下载</h4><p>wget http://机器ip：端口/文件名<br>eg： <code>wget http://10.32.115.38:8000/aa.txt</code></p>
+<h2 id="扩展进阶"><a href="#扩展进阶" class="headerlink" title="扩展进阶"></a>扩展进阶</h2><ul>
+<li>设置密码登陆</li>
+<li>前端界面设计</li>
+</ul>
 
-搭建Httpd文件服务器1.安装
-Centos: yum install httpdUbuntu: apt-get install apache2
-
-2.配置
-centos为例
-
-查看httpd版本：httpd -v查看httpd配置文件路径： httpd -V配置文件默认目录: /ect/httpd/conf/httpd.conf修改配置文件：1.端口号
-Listen 80`可以改为Listen 8000 或任意符合要求的端口
-2.文件存放目录
-DocumentRoot &quot;/home/xblin&quot;
-
-tips： 目录文件一定要有读的权限，最好放在/home下，否则会出现you don’t have permission.
-
-&lt;Directory &
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/09/Linux/Httpd╬─╝■╖■╬ё╞ў/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1180,26 +1201,20 @@ tips： 目录文件一定要有读的权限，最好放在/home下，否则会�
       
         
           
-          归并排序　　归并排序（MERGE-SORT）是利用归并的思想实现的排序方法，该算法采用经典的分治（divide-and-conquer）策略（分治法将问题分(divide)成一些小的问题然后递归求解，而治(conquer)的阶段则将分的阶段得到的各答案”修补”在一起，即分而治之)。
-堆排序特点
-不是原址排序
-不稳定排序
-T(n)=nlgn
+            <h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>　　归并排序（MERGE-SORT）是利用归并的思想实现的排序方法，该算法采用经典的分治（divide-and-conquer）策略（分治法将问题分(divide)成一些小的问题然后递归求解，而治(conquer)的阶段则将分的阶段得到的各答案”修补”在一起，即分而治之)。</p>
+<h4 id="堆排序特点"><a href="#堆排序特点" class="headerlink" title="堆排序特点"></a>堆排序特点</h4><ul>
+<li>不是原址排序</li>
+<li>不稳定排序</li>
+<li>T(n)=nlgn</li>
+</ul>
+<h4 id="归并排序步骤："><a href="#归并排序步骤：" class="headerlink" title="归并排序步骤："></a>归并排序步骤：</h4><p><strong>1. 合并相邻有序子序列</strong><br>需要将两个已经有序的子序列合并成一个有序序列，eg [4,5,7,8]和[1,2,3,6]两个已经有序的子序列，合并为最终序列[1,2,3,4,5,6,7,8]。</p>
+<p><img src="./image/merge2.png" alt="merge1"></p>
+<p><strong>2. 递归 分而治之</strong></p>
+<p><img src="./image/merge1.png" alt="merge1.png"></p>
+<hr>
+<h4 id="C-代码实现过程"><a href="#C-代码实现过程" class="headerlink" title="C++代码实现过程"></a>C++代码实现过程</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* filename: Merge_sort.cpp</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Author:   xblin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 1000000    <span class="comment">//定义一个伪无穷大</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*****************合并函数***************************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> left, <span class="keyword">int</span> mid, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> lenth1 = mid - left + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> lenth2 = right - mid;</span><br><span class="line">	<span class="keyword">int</span> *L = <span class="keyword">new</span> <span class="keyword">int</span>[lenth1+<span class="number">1</span>];   <span class="comment">//+1 为了存放结束标志</span></span><br><span class="line">	<span class="keyword">int</span> *R = <span class="keyword">new</span> <span class="keyword">int</span>[lenth2+<span class="number">1</span>];   <span class="comment">//+1 为了存放结束标志</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenth1; i++)</span><br><span class="line">		L[i] = A[i + left];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; lenth2; j++)</span><br><span class="line">		R[j] = A[j + mid + <span class="number">1</span>];</span><br><span class="line">	L[lenth1] = INF;  <span class="comment">//宏定义无穷大，结束标志</span></span><br><span class="line">	R[lenth2] = INF;  <span class="comment">//宏定义无穷大，结束标志</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>,k=left; k &lt;= right; k++)&#123;   <span class="comment">//从left遍历到right</span></span><br><span class="line">		<span class="keyword">if</span> (L[i] &lt; R[j])</span><br><span class="line">			A[k] = L[i++];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			A[k] = R[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span>[]L;</span><br><span class="line">	<span class="keyword">delete</span>[]R;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*******************归并递归函数**********************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge_sort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (left &lt; right)&#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">		Merge_sort(A, left, mid);</span><br><span class="line">		Merge_sort(A, mid + <span class="number">1</span>, right);</span><br><span class="line">		Merge(A, left, mid, right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> aa[] = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">2</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> Array_size = <span class="keyword">sizeof</span>(aa) / <span class="keyword">sizeof</span>(aa[<span class="number">0</span>]);</span><br><span class="line">	Merge_sort(aa, <span class="number">0</span>, Array_size<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= Array_size<span class="number">-1</span>; i++)</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; aa[i] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-归并排序步骤：1. 合并相邻有序子序列需要将两个已经有序的子序列合并成一个有序序列，eg [4,5,7,8]和[1,2,3,6]两个已经有序的子序列，合并为最终序列[1,2,3,4,5,6,7,8]。
-
-2. 递归 分而治之
-
-
-C++代码实现过程12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849/* filename: Me
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/01/Algorithm/╣щ▓в┼┼╨Є/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1339,34 +1354,31 @@ C++代码实现过程12345678910111213141516171819202122232425262728293031323334
       
         
           
-          快排
-参考书籍 《算法导论》
+            <h2 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h2><blockquote>
+<p>参考书籍 《算法导论》</p>
+</blockquote>
+<h4 id="快排特点"><a href="#快排特点" class="headerlink" title="快排特点"></a>快排特点</h4><ul>
+<li>分治思想</li>
+<li>原址排序</li>
+<li>T(n)=nlgn</li>
+</ul>
+<h4 id="快排缺点"><a href="#快排缺点" class="headerlink" title="快排缺点"></a>快排缺点</h4><ul>
+<li>最坏时间复杂度 T(n)=n^2</li>
+<li>不稳定排序</li>
+</ul>
+<h4 id="快排步骤："><a href="#快排步骤：" class="headerlink" title="快排步骤："></a>快排步骤：</h4><p><strong>Partition</strong><br>1.取基准数x，一般取最后一个<br><code>base=A[n]</code><br>2.小于base基数的放在左边，大于基数的base放在右边<br>3.base放到两数之间，base就已经排好了序</p>
+<p><strong>QuickSort</strong></p>
+<ul>
+<li>除去base，左右两边分治，递归调用，快排完成</li>
+</ul>
+<p><img src="./image/QuickSort.jpg" alt="QuickSort"></p>
+<hr>
+<h4 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* filename: Quick_sort.cpp</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* Author:   xblin</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/************** 数组的划分函数 **************************/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Partition</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> base = A[right];    <span class="comment">//取最后一个为基准数</span></span><br><span class="line">	<span class="keyword">int</span> j = left;           <span class="comment">//location</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = left; i &lt; right; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span> (A[i] &lt; base)                  <span class="comment">//小于base的放左边，大于base的放右边</span></span><br><span class="line">			<span class="built_in">std</span>::swap(A[i], A[j++]);      <span class="comment">//标准库的交换变量函数</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::swap(A[j], A[right]);            <span class="comment">//base放到两数之间</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> j;   <span class="comment">//返回中间base的下标</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/************** 快排的递归调用函数 *****************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (left &lt; right)&#123;</span><br><span class="line">		<span class="keyword">int</span> base = Partition(A, left, right);</span><br><span class="line">		QuickSort(A, left, base - <span class="number">1</span>);</span><br><span class="line">		QuickSort(A, base + <span class="number">1</span>, right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> aa[] = &#123; <span class="number">2</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> Array_size = <span class="keyword">sizeof</span>(aa) / <span class="keyword">sizeof</span>(<span class="keyword">int</span>); </span><br><span class="line"></span><br><span class="line">	QuickSort(aa, <span class="number">0</span>, Array_size<span class="number">-1</span>);    <span class="comment">//快排</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; Array_size; i++)</span><br><span class="line"> 		<span class="built_in">cout</span> &lt;&lt; aa[i] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="快排的优化"><a href="#快排的优化" class="headerlink" title="快排的优化"></a>快排的优化</h2><p>快排最坏情况下的时间复杂度T(n)=n2，<br>eg：6,5,4,3,2,1；  且base取最后一个1。<br>要减小此概率的发生，base就要随机取一个</p>
+<p>添加伪代码：<br>思想：先随机取一个base，交换放到数组最后就行，然后正常调用Parition函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Random_partition(A, l, r)</span><br><span class="line">    i=Random(l, r)</span><br><span class="line">    swap(A[r], A[i])</span><br><span class="line">    return Partition(A, l, r)</span><br></pre></td></tr></table></figure></p>
 
-快排特点
-分治思想
-原址排序
-T(n)=nlgn
-
-快排缺点
-最坏时间复杂度 T(n)=n^2
-不稳定排序
-
-快排步骤：Partition1.取基准数x，一般取最后一个base=A[n]2.小于base基数的放在左边，大于基数的base放在右边3.base放到两数之间，base就已经排好了序
-QuickSort
-
-除去base，左右两边分治，递归调用，快排完成
-
-
-
-C++代码1234567891011121314151617181920212223242526272829303132333435363738/* filename: Quick_sort.cpp** Author:   xblin*/#include &lt;iostream&gt;using namespace std;/************** 数组的划分函数 ***********
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/31/Algorithm/┐ь╦┘┼┼╨Є/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1506,30 +1518,42 @@ C++代码1234567891011121314151617181920212223242526272829303132333435363738/* f
       
         
           
-          堆排序
-参考书籍： 《算法导论》
+            <h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><blockquote>
+<p>参考书籍： 《算法导论》</p>
+</blockquote>
+<h4 id="堆排序特点"><a href="#堆排序特点" class="headerlink" title="堆排序特点"></a>堆排序特点</h4><ul>
+<li>原址排序</li>
+<li>不稳定排序</li>
+<li>T(n)=nlgn</li>
+</ul>
+<h4 id="堆排序缺点"><a href="#堆排序缺点" class="headerlink" title="堆排序缺点"></a>堆排序缺点</h4><ol>
+<li>最大的也是唯一的缺点就是——堆的维护问题，实际场景中的数据是频繁发生变动的，而对于待排序序列的每次更新（增，删，改），我们都要重新做一遍堆的维护，以保证其特性，这在大多数情况下都是没有必要的</li>
+<li>每次移出堆顶最大元素后，都需要从顶部维护最大堆性质导致了过多的数据交换操作。</li>
+<li>插入一个元素后（加到堆最后），又要重新进行整个堆算法。<h4 id="堆排序的总过程："><a href="#堆排序的总过程：" class="headerlink" title="堆排序的总过程："></a>堆排序的总过程：</h4>一.确定父结点，左右孩子；<br>二.维护最大堆 O(n)=lgn;<br>三.建立最大堆<br>四.堆排算法 T(n)=nlgn</li>
+</ol>
+<hr>
+<h4 id="1-完全二叉树-数组"><a href="#1-完全二叉树-数组" class="headerlink" title="1. 完全二叉树  数组"></a>1. 完全二叉树 <--> 数组</--></h4><p><img src="./image/heap1.jpg" alt=""></p>
+<h4 id="2-确定父结点，左孩子，右孩子"><a href="#2-确定父结点，左孩子，右孩子" class="headerlink" title="2.确定父结点，左孩子，右孩子"></a>2.确定父结点，左孩子，右孩子</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Parent(i) ((i-1)/2)    <span class="comment">//父结点</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Left(i)   (i*2+1)      <span class="comment">//左孩子</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Right(i)  (i*2+2)      <span class="comment">//右孩子</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="3-维护最大堆"><a href="#3-维护最大堆" class="headerlink" title="3.维护最大堆"></a>3.维护最大堆</h4><p>最大堆： 所有结点满足 父结点的值要大于左右孩子的值；<br>         A[Parent] &gt; A[i]<br><img src="./image/heap2.jpg" alt=""><br><strong>C++代码：</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***************维护最大堆函数*****************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Max_Heapify</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> i, <span class="keyword">int</span> Heap_size)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> left = Left(i);      <span class="comment">//左孩子</span></span><br><span class="line">	<span class="keyword">int</span> right = Right(i);    <span class="comment">//右孩子</span></span><br><span class="line">	<span class="keyword">int</span> largest_num = i;     <span class="comment">//存放最大值的下标</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (left &lt; Heap_size &amp;&amp; A[left] &gt; A[i])&#123;</span><br><span class="line">		largest_num = left;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (right &lt; Heap_size &amp;&amp; A[right] &gt; A[largest_num])&#123;      <span class="comment">//注意：这里一定要是largerst</span></span><br><span class="line">		largest_num = right;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (largest_num != i)&#123;</span><br><span class="line">		Swap(A[i], A[largest_num]); <span class="comment">//交换两个值</span></span><br><span class="line">		Max_Heapify(A, largest_num, Heap_size);   <span class="comment">//递归调用，确保调换后保证最大堆的性质， 因为建堆是倒序的</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="4-建立最大堆"><a href="#4-建立最大堆" class="headerlink" title="4.建立最大堆"></a>4.建立最大堆</h4><ul>
+<li>从下往上以后Max_Heapify()函数 把A转化成最大堆</li>
+<li>从有左右孩子的结点开始<br><img src="./image/heap3.jpg" alt=""><br><strong>C++代码：</strong><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***************建立最大堆函数*************************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Build_MaxHeap</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> Heap_size)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = (Heap_size<span class="number">-2</span>)/<span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)&#123;    <span class="comment">//从有孩子的结点开始建堆        </span></span><br><span class="line">		Max_Heapify(A, i, Heap_size);              <span class="comment">//从下往上维护最大堆</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="5-堆排序算法"><a href="#5-堆排序算法" class="headerlink" title="5.堆排序算法"></a>5.堆排序算法</h4><p><strong>原理：</strong><br>最大元素A[0] 与 A[Heap_size] 交换后，断开A[Heap_size]，A.length-1; 然后维护最大堆，如此循环下去。<br><img src="./image/heap4.jpg" alt=""><br><strong>C++代码：</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***************堆排序算法**********************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heap_sort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> Heap_size)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	Build_MaxHeap(A, Heap_size);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = Heap_size<span class="number">-1</span>; i&gt;<span class="number">0</span>; i--)&#123;</span><br><span class="line">		Swap(A[i], A[<span class="number">0</span>]);</span><br><span class="line">		Max_Heapify(A, <span class="number">0</span>, i);           <span class="comment">//A.lenth -- 交换完A[0]最大值后，要断开</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><br></p>
+<h4 id="最后附上C-整体代码"><a href="#最后附上C-整体代码" class="headerlink" title="最后附上C++整体代码"></a>最后附上C++整体代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* filename: Heap_sort.cpp</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Author:   xblin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Parent(i) ((i-1)/2)    <span class="comment">//i的父结点</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Left(i)   (i*2+1)      <span class="comment">//i的左孩子</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Right(i)  (i*2+2)      <span class="comment">//i的右孩子</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*通过引用来交换变量值函数*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Swap</span><span class="params">(<span class="keyword">int</span> &amp;a, <span class="keyword">int</span> &amp;b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/***************维护最大堆函数*****************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Max_Heapify</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> i, <span class="keyword">int</span> Heap_size)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> left = Left(i);      <span class="comment">//左孩子</span></span><br><span class="line">	<span class="keyword">int</span> right = Right(i);    <span class="comment">//右孩子</span></span><br><span class="line">	<span class="keyword">int</span> largest_num = i;     <span class="comment">//存放最大值的下标</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (left &lt; Heap_size &amp;&amp; A[left] &gt; A[i])&#123;</span><br><span class="line">		largest_num = left;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (right &lt; Heap_size &amp;&amp; A[right] &gt; A[largest_num])&#123;      <span class="comment">//注意：这里一定要是largerst</span></span><br><span class="line">		largest_num = right;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (largest_num != i)&#123;</span><br><span class="line">		Swap(A[i], A[largest_num]);</span><br><span class="line">		Max_Heapify(A, largest_num, Heap_size);   <span class="comment">//递归调用，确保调换后保证最大堆的性质， 因为建堆是倒序的</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/***************建立最大堆函数*************************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Build_MaxHeap</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> Heap_size)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = (Heap_size<span class="number">-2</span>)/<span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)&#123;    <span class="comment">//从有孩子的结点开始建堆        </span></span><br><span class="line">		Max_Heapify(A, i, Heap_size);              <span class="comment">//从下往上维护最大堆</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/***************堆排序算法**********************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heap_sort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> Heap_size)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	Build_MaxHeap(A, Heap_size);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = Heap_size<span class="number">-1</span>; i&gt;<span class="number">0</span>; i--)&#123;</span><br><span class="line">		Swap(A[i], A[<span class="number">0</span>]);</span><br><span class="line">		Max_Heapify(A, <span class="number">0</span>, i);           <span class="comment">//A.lenth -- 交换完A[0]最大值后，要断开</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>  **argv)</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> aa[] = &#123;<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">16</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">14</span>,<span class="number">8</span>,<span class="number">7</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> Heap_size = <span class="keyword">sizeof</span>(aa) / <span class="keyword">sizeof</span>(aa[<span class="number">0</span>]);  <span class="comment">//C++算数组长度，也可用sizeof(aa)/sizeof(int);</span></span><br><span class="line">	</span><br><span class="line">	Heap_sort(aa, Heap_size);  <span class="comment">//堆排序算法</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; Heap_size;i++)</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; aa[i] &lt;&lt; <span class="built_in">endl</span>;            <span class="comment">//输出数组</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="最大优先级队列"><a href="#最大优先级队列" class="headerlink" title="最大优先级队列"></a>最大优先级队列</h2><h4 id="实质是对一个最大堆的查找，插入，删除操作"><a href="#实质是对一个最大堆的查找，插入，删除操作" class="headerlink" title="实质是对一个最大堆的查找，插入，删除操作"></a>实质是对一个<strong>最大堆</strong>的查找，插入，删除操作</h4><ul>
+<li>Insert(S, x): 把元素x插入最大堆S中。</li>
+<li>Maximum(S): 返回S中具有最大关键字的元素</li>
+<li>Increase-Key(S,x,k): 将元素x的值增加到k后维护最大堆</li>
+</ul>
+<p>1.Increase-Key(S,x,k)：该增加后的值不断与父结点比较。</p>
+<p>2.插入元素到最大堆：先把元素放到堆尾，然后调用Increase-Key(S,x,k)</p>
 
-堆排序特点
-原址排序
-不稳定排序
-T(n)=nlgn
-
-堆排序缺点
-最大的也是唯一的缺点就是——堆的维护问题，实际场景中的数据是频繁发生变动的，而对于待排序序列的每次更新（增，删，改），我们都要重新做一遍堆的维护，以保证其特性，这在大多数情况下都是没有必要的
-每次移出堆顶最大元素后，都需要从顶部维护最大堆性质导致了过多的数据交换操作。
-插入一个元素后（加到堆最后），又要重新进行整个堆算法。堆排序的总过程：一.确定父结点，左右孩子；二.维护最大堆 O(n)=lgn;三.建立最大堆四.堆排算法 T(n)=nlgn
-
-
-1. 完全二叉树  数组
-2.确定父结点，左孩子，右孩子123#define Parent(i) ((i-1)/2)    //父结点#define Left(i)   (i*2+1)      //左孩子#define Right(i)  (
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/30/Algorithm/╢╤┼┼╨Є/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1669,21 +1693,14 @@ T(n)=nlgn
       
         
           
-          稳定性排序和非稳定性排序稳定性排序：能保证排序后2个相等的数前后位置顺序不变。eg：插入排序、冒泡排序、归并排序。
-非稳定排序： 相反。
-原址排序 插排，堆排，快排非： 归并排序
-一、归并排序1.时间复杂度O(n) = nlgn
-2.代码实现
-
-最大子数组问题二、堆排序1.确定父结点，左孩子，右孩子2.维护最大堆
+            <h2 id="稳定性排序和非稳定性排序"><a href="#稳定性排序和非稳定性排序" class="headerlink" title="稳定性排序和非稳定性排序"></a>稳定性排序和非稳定性排序</h2><p><strong>稳定性排序</strong>：能保证排序后2个相等的数前后位置顺序不变。eg：插入排序、冒泡排序、归并排序。</p>
+<p><strong>非稳定排序</strong>： 相反。</p>
+<h2 id="原址排序-插排，堆排，快排"><a href="#原址排序-插排，堆排，快排" class="headerlink" title="原址排序 插排，堆排，快排"></a>原址排序 插排，堆排，快排</h2><p>非： 归并排序</p>
+<h2 id="一、归并排序"><a href="#一、归并排序" class="headerlink" title="一、归并排序"></a>一、归并排序</h2><h4 id="1-时间复杂度"><a href="#1-时间复杂度" class="headerlink" title="1.时间复杂度"></a>1.时间复杂度</h4><p><code>O(n) = nlgn</code></p>
+<h4 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2.代码实现"></a>2.代码实现</h4><pre><code class="C++">
+</code></pre>
+<h2 id="最大子数组问题"><a href="#最大子数组问题" class="headerlink" title="最大子数组问题"></a>最大子数组问题</h2><h2 id="二、堆排序"><a href="#二、堆排序" class="headerlink" title="二、堆排序"></a>二、堆排序</h2><h4 id="1-确定父结点，左孩子，右孩子"><a href="#1-确定父结点，左孩子，右孩子" class="headerlink" title="1.确定父结点，左孩子，右孩子"></a>1.确定父结点，左孩子，右孩子</h4><h4 id="2-维护最大堆"><a href="#2-维护最大堆" class="headerlink" title="2.维护最大堆"></a>2.维护最大堆</h4>
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/30/Algorithm/┼┼╨Є/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1823,15 +1840,8 @@ T(n)=nlgn
       
         
           
-          1. 等差数列的求和公式= （首相 + 末项） * 项数 ／ 2；
+            <h4 id="1-等差数列的求和公式-（首相-末项）-项数-／-2；"><a href="#1-等差数列的求和公式-（首相-末项）-项数-／-2；" class="headerlink" title="1. 等差数列的求和公式= （首相 + 末项） * 项数 ／ 2；"></a>1. 等差数列的求和公式= （首相 + 末项） * 项数 ／ 2；</h4>
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/29/Practice/╦в╠т▒╩╝╟/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
