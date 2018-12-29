@@ -34,17 +34,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Httpd文件服务器]]></title>
-    <url>%2F2018%2F11%2F09%2FLinux%2FHttpd%E2%95%AC%E2%94%80%E2%95%9D%E2%96%A0%E2%95%96%E2%96%A0%E2%95%AC%D1%91%E2%95%9E%D1%9E%2F</url>
-    <content type="text"><![CDATA[文件服务器搭建方法 Httpd(appache2) vsftpd python SimpleHTTPserver 搭建Httpd文件服务器1.安装 Centos: yum install httpdUbuntu: apt-get install apache2 2.配置 centos为例 查看httpd版本：httpd -v查看httpd配置文件路径： httpd -V配置文件默认目录: /ect/httpd/conf/httpd.conf修改配置文件： 1.端口号 Listen 80`可以改为Listen 8000 或任意符合要求的端口 2.文件存放目录 DocumentRoot &quot;/home/xblin&quot; tips： 目录文件一定要有读的权限，最好放在/home下，否则会出现you don’t have permission. &lt;Directory &quot;/home/xblin&quot;&gt; #这个同上也要改 启动Httpd服务： 123service httpd stopservice httpd startservice httpd restart 3.Web查看网页登陆链接 http://机器ip：端口eg： http://10.32.115.38:8000第一次登陆会弹出欢迎界面注释 /ect/httpd/conf.d/welcome.conf再次登陆就能看到文件列表 4.文件下载wget http://机器ip：端口/文件名eg： wget http://10.32.115.38:8000/aa.txt 扩展进阶 设置密码登陆 前端界面设计]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Http</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[归并排序]]></title>
     <url>%2F2018%2F11%2F01%2FAlgorithm%2F%E2%95%A3%D1%89%E2%96%93%D0%B2%E2%94%BC%E2%94%BC%E2%95%A8%D0%84%2F</url>
     <content type="text"><![CDATA[归并排序 归并排序（MERGE-SORT）是利用归并的思想实现的排序方法，该算法采用经典的分治（divide-and-conquer）策略（分治法将问题分(divide)成一些小的问题然后递归求解，而治(conquer)的阶段则将分的阶段得到的各答案”修补”在一起，即分而治之)。 堆排序特点 不是原址排序 不稳定排序 T(n)=nlgn 归并排序步骤：1. 合并相邻有序子序列需要将两个已经有序的子序列合并成一个有序序列，eg [4,5,7,8]和[1,2,3,6]两个已经有序的子序列，合并为最终序列[1,2,3,4,5,6,7,8]。 2. 递归 分而治之 C++代码实现过程12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849/* filename: Merge_sort.cpp * * Author: xblin */#include &lt;iostream&gt;using namespace std;#define INF 1000000 //定义一个伪无穷大/*****************合并函数***************************/void Merge(int A[], int left, int mid, int right)&#123; int lenth1 = mid - left + 1; int lenth2 = right - mid; int *L = new int[lenth1+1]; //+1 为了存放结束标志 int *R = new int[lenth2+1]; //+1 为了存放结束标志 for (int i = 0; i &lt; lenth1; i++) L[i] = A[i + left]; for (int j = 0; j &lt; lenth2; j++) R[j] = A[j + mid + 1]; L[lenth1] = INF; //宏定义无穷大，结束标志 R[lenth2] = INF; //宏定义无穷大，结束标志 for (int i=0,j=0,k=left; k &lt;= right; k++)&#123; //从left遍历到right if (L[i] &lt; R[j]) A[k] = L[i++]; else A[k] = R[j++]; &#125; delete[]L; delete[]R;&#125;/*******************归并递归函数**********************/void Merge_sort(int A[], int left, int right)&#123; if (left &lt; right)&#123; int mid = (left + right) / 2; Merge_sort(A, left, mid); Merge_sort(A, mid + 1, right); Merge(A, left, mid, right); &#125;&#125;int main(int argc, char **argv)&#123; int aa[] = &#123;1,3,5,4,6,2&#125;; int Array_size = sizeof(aa) / sizeof(aa[0]); Merge_sort(aa, 0, Array_size-1); for (int i = 0; i &lt;= Array_size-1; i++) cout &lt;&lt; aa[i] &lt;&lt; endl; return 0;&#125;]]></content>
@@ -75,28 +64,6 @@
       </categories>
       <tags>
         <tag>Algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Markdown笔记]]></title>
-    <url>%2F2018%2F10%2F29%2FLinux%2FMarkdown%E2%96%92%E2%95%A9%E2%95%9D%E2%95%9F%2F</url>
-    <content type="text"><![CDATA[标题123456# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题 注：# 和「一级标题」之间建议保留一个字符的空格，这是最标准的 Markdown 写法 代码注释1.单行注释code 2.多行注释1234#include &lt;iostream&gt;int main(void)&#123; count &lt;&lt;"hello world!"&lt;&lt;endl;&#125; 列表1.无序列表123- 文本1- 文本2- 文本3 output： 文本1 文本2 文本3 2.有序列表1231. 文本12. 文本23. 文本3 表格12345标题1 | 标题2 | 标题3 |----- | :---- | ----: |lab1 | lab2 | lab3 |注： :---- 为左对齐 ， ----:为右对齐 output: 标题1 标题2 标题3 lab1 lab2 lab3 下划线1---- output: 空格和换行####空格1.按shift + space 切换为全角模式，输入空格就有效2.1&amp;bsp; aa 换行12&lt;br/&gt;下行文本 output:aa]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Vim基本操作]]></title>
-    <url>%2F2018%2F10%2F29%2FLinux%2FVim%E2%95%97%E2%88%99%E2%96%92%E2%95%9B%E2%96%93%E2%94%98%E2%95%AB%D1%9E%2F</url>
-    <content type="text"><![CDATA[####1.方向移动（hjkl代替方向键移动）tytal123 kh l j ####2.插入编辑1i a A o ####3.删除，替换，复制粘贴 操作 命令 删除 x dw de d$ dd 2dd 替换 rx R 复制 v….v +y or yy 粘贴 p ####4.移动到home和end 123456home: 0end: $start： ggended： G查看文本信息： CTRL+G回到前一次编辑的地方： &apos;0 ####5.撤销和反撤销 12撤销： u反撤销： CTRL-R ####6.查找和替换 12345678910设置显示行号： set nu查找 ： /xxx查找下(上)一个： n N显示该字的关键字： *取消高亮显示： nohls高亮显示： hls替换：%s/old/new/g ####7.自动补全 CTRL-P ####8.写入文件 or 文件另存为 :w filename]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
       </tags>
   </entry>
 </search>
